@@ -1,0 +1,61 @@
+:root {
+  --primary-text-color: #111;
+  --secondary-text-color: #666;
+  --badge-text-color: #544f4f;
+  --badge-background-color: rgb(236, 233, 233);
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  padding: 16px;
+  height: 470px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--primary-text-color);
+}
+
+.badgeSmall {
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: var(--badge-text-color);
+  background: var(--badge-background-color);
+  border-radius: 12px;
+  padding: 4px 8px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 16px;
+  column-gap: 8px;
+}
+
+.label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--primary-text-color);
+}
+
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}

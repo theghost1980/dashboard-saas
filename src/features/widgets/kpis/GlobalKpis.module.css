@@ -1,0 +1,20 @@
+:root {
+  --primary-text-color: #111;
+  --secondary-text-color: #666;
+  --badge-text-color: #544f4f;
+  --badge-background-color: rgb(236, 233, 233);
+  --shapes-color: rgba(43, 43, 211, 0.5);
+}
+
+.globalKpis {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  padding: 16px;
+  min-height: 100px;
+}
