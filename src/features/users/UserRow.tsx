@@ -1,8 +1,8 @@
-import type { User } from '@/types/users';
+import type { InternalUser } from '@/types/users';
 import { memo } from 'react';
 
 type UserRowProps = {
-  user: User;
+  user: InternalUser;
 };
 
 export const UserRow = memo(function UserRow({ user }: UserRowProps) {

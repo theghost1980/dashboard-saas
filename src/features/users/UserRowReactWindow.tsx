@@ -1,7 +1,7 @@
-import type { User } from '@/types/users';
+import type { InternalUser } from '@/types/users';
 
 type RowExtraProps = {
-  users: User[];
+  users: InternalUser[];
 };
 
 type RowInjectedProps = {

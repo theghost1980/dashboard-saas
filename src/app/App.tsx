@@ -1,5 +1,5 @@
 import { DashboardPage } from '@/pages/dashboard/DashboardPage';
-import type { DataSource } from '@/types/users';
+import type { DataSource } from '@/types/app';
 import { useState } from 'react';
 
 function App() {
