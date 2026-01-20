@@ -13,7 +13,7 @@ export function StatusBar({
   onRetry,
   lastUpdated,
 }: Props) {
-  if (status === 'idle' || status === 'success') return null;
+  if (status === 'idle') return null;
 
   return (
     <div className={styles.statusBar}>
@@ -30,9 +30,9 @@ export function StatusBar({
           )}
         </div>
       )}
-      {/* {status === 'success' && (
+      {status === 'success' && lastUpdated && (
         <div className={styles.success}>{lastUpdated?.toDateString()}</div>
-      )} */}
+      )}
     </div>
   );
 }
