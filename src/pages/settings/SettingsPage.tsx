@@ -2,7 +2,7 @@ import styles from './SettingsPage.module.css';
 
 export function SettingsPage() {
   return (
-    <div>
+    <div className={styles.settingsPage}>
       <p>Settings page //TODO</p>
     </div>
   );
