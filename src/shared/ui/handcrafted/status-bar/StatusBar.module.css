@@ -1,0 +1,83 @@
+.statusBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  overflow: hidden;
+  height: 35px;
+}
+
+.error {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.retryButton {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  background: rgb(243, 241, 241);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+.retryButton:hover {
+  background: rgb(222, 217, 217);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 25px;
+  position: relative;
+  overflow: hidden;
+}
+.loader:before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  content: '';
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 5px solid #0000;
+  border-color: #5441e3 #fff #0000 #0000;
+  border-radius: 50%;
+  box-sizing: border-box;
+  transform: rotate(-200deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .loader:before {
+    animation: rotate 3s ease-in-out infinite;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    border-width: 8px;
+  }
+  25% {
+    border-width: 3px;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-width: 8px;
+  }
+  75% {
+    border-width: 3px;
+  }
+  100% {
+    border-width: 8px;
+  }
+}

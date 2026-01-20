@@ -1,4 +1,4 @@
-import type { InternalUser } from '@/types/users';
+import type { InternalUser } from '@/types/app';
 
 type RowExtraProps = {
   users: InternalUser[];

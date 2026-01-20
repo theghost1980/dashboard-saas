@@ -1,4 +1,4 @@
-import type { InternalUser } from '@/types/users';
+import type { InternalUser } from '@/types/app';
 import { memo } from 'react';
 
 type UserRowProps = {

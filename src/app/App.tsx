@@ -1,11 +1,11 @@
-import { DashboardPage } from '@/pages/dashboard/DashboardPage';
 import type { DataSource } from '@/types/app';
 import { useState } from 'react';
+import { AppRouter } from './router/AppRouter';
 
 function App() {
   const [dataSource, setDataSource] = useState<DataSource>('jsonplaceholder');
   return (
-    <DashboardPage dataSource={dataSource} onDataSourceChange={setDataSource} />
+    <AppRouter dataSource={dataSource} onDataSourceChange={setDataSource} />
   );
 }
 

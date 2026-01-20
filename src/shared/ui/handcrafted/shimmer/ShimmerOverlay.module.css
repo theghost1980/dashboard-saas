@@ -1,0 +1,46 @@
+.shimmerContainer {
+  position: relative;
+}
+
+.shimmerOverlay {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(220, 218, 218, 0.2);
+  z-index: 10;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.shimmerOverlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  transform: translateX(-100%);
+  background: linear-gradient(0.25turn, #b3c6ce7b, #19526a50, #3f87a65c);
+  z-index: 1;
+}
+
+.text {
+  font-weight: 300;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shimmerOverlay::before {
+    animation: shimmer 1.2s linear infinite;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

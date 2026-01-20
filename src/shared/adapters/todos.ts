@@ -1,8 +1,6 @@
-import type {
-  InternalTodo,
-  TodoDummyJSON,
-  TodoJSONPlaceholder,
-} from '@/types/users';
+import type { InternalTodo } from '@/types/app';
+import type { TodoDummyJSON } from '@/types/datasource/dummyjson/rawdata';
+import type { TodoJSONPlaceholder } from '@/types/datasource/jsonplaceholder/rawdata';
 
 const mapJsonPlaceholderTodoToInternal = (
   t: TodoJSONPlaceholder,

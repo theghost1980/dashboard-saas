@@ -1,5 +1,8 @@
 import { config } from '@/shared/config/config';
-import type { TodoDummyJSON, UsersDummyJSONResponse } from '@/types/users';
+import type {
+  TodoDummyJSON,
+  UsersDummyJSONResponse,
+} from '@/types/datasource/dummyjson/rawdata';
 
 const getUsers = async (
   abortSignal: AbortSignal,

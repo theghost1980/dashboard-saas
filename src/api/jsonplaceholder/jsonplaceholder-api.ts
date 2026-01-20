@@ -1,5 +1,8 @@
 import { config } from '@/shared/config/config';
-import type { TodoJSONPlaceholder, UserJSONPlaceholder } from '@/types/users';
+import type {
+  TodoJSONPlaceholder,
+  UserJSONPlaceholder,
+} from '@/types/datasource/jsonplaceholder/rawdata';
 
 const getUsers = async (
   abortSignal: AbortSignal,

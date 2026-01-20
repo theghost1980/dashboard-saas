@@ -63,7 +63,7 @@
   background: rgba(0, 0, 0, 0.05);
 }
 
-.navItem[aria-current='page'] {
+a[aria-current='page'] {
   background: rgba(0, 0, 0, 0.08);
   font-weight: 600;
 }

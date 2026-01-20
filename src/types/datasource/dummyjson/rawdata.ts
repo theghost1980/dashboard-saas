@@ -1,49 +1,6 @@
-export interface InternalUser {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  image?: string;
-}
-
-export interface InternalTodo {
-  id: number;
-  userId: number;
-  title: string;
-  completed: boolean;
-}
-
-export interface UserJSONPlaceholder {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
-}
-
-export interface TodoJSONPlaceholder {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
+/**
+ * note: JSONPlaceholder data types: los usamos sin declarar response raw types, ya que los hemos usado como base. No obstante se normalizan de igual manera.
+ */
 export interface UserDummyJSON {
   id: number;
   firstName: string;
@@ -115,6 +72,9 @@ export interface UserDummyJSON {
   role: string;
 }
 
+/**
+ * note: JSONPlaceholder data types: los usamos sin declarar response raw types, ya que los hemos usado como base. No obstante se normalizan de igual manera.
+ */
 export type UsersDummyJSONResponse = {
   users: UserDummyJSON[];
   total: number;
@@ -122,6 +82,9 @@ export type UsersDummyJSONResponse = {
   limit: number;
 };
 
+/**
+ * note: JSONPlaceholder data types: los usamos sin declarar response raw types, ya que los hemos usado como base. No obstante se normalizan de igual manera.
+ */
 export interface TodoDummyJSON {
   userId: number;
   id: number;
@@ -129,15 +92,12 @@ export interface TodoDummyJSON {
   completed: boolean;
 }
 
+/**
+ * note: JSONPlaceholder data types: los usamos sin declarar response raw types, ya que los hemos usado como base. No obstante se normalizan de igual manera.
+ */
 export type TodosDummyJsonResponse = {
   todos: TodoDummyJSON[];
   total: number;
   skip: number;
   limit: number;
 };
-
-export type AsyncState<T> =
-  | { status: 'idle' }
-  | { status: 'loading' }
-  | { status: 'success'; data: T }
-  | { status: 'error'; error: string };

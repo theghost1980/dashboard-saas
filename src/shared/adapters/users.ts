@@ -1,8 +1,6 @@
-import type {
-  InternalUser,
-  UserDummyJSON,
-  UserJSONPlaceholder,
-} from '@/types/users';
+import type { InternalUser } from '@/types/app';
+import type { UserDummyJSON } from '@/types/datasource/dummyjson/rawdata';
+import type { UserJSONPlaceholder } from '@/types/datasource/jsonplaceholder/rawdata';
 
 const mapDummyJsonUserToInternal = (u: UserDummyJSON): InternalUser => ({
   id: u.id,

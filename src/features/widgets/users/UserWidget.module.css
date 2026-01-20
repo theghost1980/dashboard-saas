@@ -49,6 +49,18 @@
   column-gap: 8px;
 }
 
+.smallButton {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: white;
+}
+.smallButton:hover {
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  background: rgb(233, 226, 226);
+}
+
 .label {
   font-size: 1.1rem;
   font-weight: bold;

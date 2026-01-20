@@ -1,8 +1,9 @@
-import type { UserJSONPlaceholder } from '@/types/users';
-const expandUsers = (base: UserJSONPlaceholder[], targetCount = 5000) => {
+import type { InternalUser } from '@/types/app';
+
+const expandUsers = (base: InternalUser[], targetCount = 5000) => {
   if (!base.length) return [];
 
-  const result: UserJSONPlaceholder[] = [];
+  const result: InternalUser[] = [];
   const baseLen = base.length;
 
   for (let i = 0; i < targetCount; i++) {
@@ -16,7 +17,7 @@ const expandUsers = (base: UserJSONPlaceholder[], targetCount = 5000) => {
       username: `${original.username}-${suffix}`,
       name: `${original.name} (${suffix})`,
       email: original.email.replace('@', `+${suffix}@`),
-    });
+    } as InternalUser);
   }
 
   return result;
