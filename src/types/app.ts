@@ -53,3 +53,22 @@ export interface Sort {
   key: SortKey;
   order: SortOrder;
 }
+
+export type MotionPreference = 'system' | 'on' | 'off';
+export type Theme = 'light' | 'dark';
+export interface AppSettings {
+  virtualization: boolean;
+  motion: MotionPreference;
+  theme: Theme;
+  dataSource: DataSource;
+}
+
+export type SettingChangeHandler = <K extends keyof AppSettings>(
+  key: K,
+  value: AppSettings[K],
+) => void;
+
+export interface SettingsContextType {
+  settings: AppSettings;
+  handleSettingChange: SettingChangeHandler;
+}

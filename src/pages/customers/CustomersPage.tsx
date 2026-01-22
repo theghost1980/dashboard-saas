@@ -1,7 +1,6 @@
-import { useMemo, useState, useTransition } from 'react';
+import { useMemo, useState } from 'react';
 import styles from './CustomerPage.module.css';
 import type {
-  DataSource,
   InternalCustomer,
   Sort,
   SortKey,
@@ -12,27 +11,20 @@ import { useUsers } from '@/shared/hooks/useUsers';
 import { useTodos } from '@/shared/hooks/useTodos';
 import { useDebouncedValue } from '@/shared/hooks/useDebouncedValue';
 import { EasyTableVirtualized } from '@/shared/ui/handcrafted/table/EasyTableVirtualized';
-import { Switch } from '@/shared/ui/handcrafted/switch/Switch';
 import { EasyTableSimple } from '@/shared/ui/handcrafted/table/EasyTableSimple';
 import { getCustomerValue } from '@/shared/utils/utils';
+import { useSettings } from '@/app/context/hooks/useSettings';
 
-interface Props {
-  dataSource: DataSource;
-}
-
-export function CustomersPage({ dataSource }: Props) {
+export function CustomersPage() {
   const [query, setQuery] = useState('');
-  const [virtualizationUI, setVirtualizationUI] = useState(true);
-  const [virtualizationApplied, setVirtualizationApplied] = useState(true);
   const [sort, setSort] = useState<Sort>({
     key: 'name',
     order: 'asc',
   });
 
-  const [isPending, startTransition] = useTransition();
-
-  const users = useUsers(dataSource);
-  const todos = useTodos(dataSource);
+  const { settings } = useSettings();
+  const users = useUsers(settings.dataSource);
+  const todos = useTodos(settings.dataSource);
   const debouncedQuery = useDebouncedValue(query, 300);
 
   const customerData = useMemo(() => {
@@ -61,7 +53,7 @@ export function CustomersPage({ dataSource }: Props) {
         name: user.name,
         username: user.username,
         email: user.email,
-        source: dataSource,
+        source: settings.dataSource,
         activity: {
           todosTotal: stats.total,
           todosPending: stats.pending,
@@ -71,7 +63,7 @@ export function CustomersPage({ dataSource }: Props) {
       };
     });
     return finalUsersStats;
-  }, [users.state.data, todos.state.data, dataSource]);
+  }, [users.state.data, todos.state.data, settings.dataSource]);
 
   const filteredCustomers = useMemo(() => {
     const q = debouncedQuery.trim().toLowerCase();
@@ -113,13 +105,6 @@ export function CustomersPage({ dataSource }: Props) {
     return copyFilteredCustomers;
   }, [filteredCustomers, sort.key, sort.order]);
 
-  const onToggleVirtualization = (nextChecked: boolean) => {
-    setVirtualizationUI(nextChecked);
-    startTransition(() => {
-      setVirtualizationApplied(nextChecked);
-    });
-  };
-
   const handleSetSort = (key: SortKey) => {
     const k = key;
     let prevOrder = sort.order;
@@ -146,20 +131,16 @@ export function CustomersPage({ dataSource }: Props) {
           />
         </section>
         <section>
-          <Switch
-            checked={virtualizationUI}
-            onChange={onToggleVirtualization}
-            label="Virtualización"
-            labels={{ on: 'ON', off: 'OFF' }}
-            disabled={isPending}
-          />
+          <p className={styles.virtualizationStatus}>
+            Tabla Virtualizada {settings.virtualization ? 'ON' : 'OFF'}
+          </p>
         </section>
       </div>
 
-      {virtualizationApplied ? (
+      {settings.virtualization ? (
         <EasyTableVirtualized
           customers={sortedCustomers}
-          virtualize={virtualizationApplied}
+          virtualize={settings.virtualization}
           resetKey={debouncedQuery}
           onSort={(k) => handleSetSort(k)}
           sort={sort}

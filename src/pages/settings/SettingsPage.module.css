@@ -1,5 +1,45 @@
 .settingsPage {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 80%;
+  height: 60%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  padding: 12px;
+  align-self: center;
+  justify-self: center;
+}
+
+.switchContainer {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.motionSetting {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+}
+
+.motionInfo {
+  padding: 24px;
+  font-size: 0.75rem;
+  font-style: italic;
+  max-width: 300px;
+}
+
+.extrenalLink {
+  text-decoration: underline;
+  font-weight: bold;
 }

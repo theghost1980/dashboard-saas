@@ -1,3 +1,5 @@
+import type { AppSettings } from '@/types/app';
+
 export const config = {
   endPoints: {
     JSONPlaceHolder: {
@@ -9,4 +11,11 @@ export const config = {
       todos: 'https://dummyjson.com/todos',
     },
   },
+};
+
+export const DEFAULT_SETTINGS: AppSettings = {
+  virtualization: true,
+  theme: 'light',
+  motion: 'system',
+  dataSource: 'jsonplaceholder',
 };

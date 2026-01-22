@@ -1,19 +1,17 @@
 import { TodoWidget } from '@/features/widgets/todos/TodoWidget';
-import type { DataSource, InternalTodo } from '@/types/app';
+import type { InternalTodo } from '@/types/app';
 import styles from './DashboardPage.module.css';
 import { GlobalKpis } from '@/features/widgets/kpis/GlobalKpis';
 import { useUsers } from '@/shared/hooks/useUsers';
 import { useTodos } from '@/shared/hooks/useTodos';
 import { useMemo } from 'react';
 import { UserWidget } from '@/features/widgets/users/UserWidget';
+import { useSettings } from '@/app/context/hooks/useSettings';
 
-interface Props {
-  dataSource: DataSource;
-}
-
-export function DashboardPage({ dataSource }: Props) {
-  const userQuery = useUsers(dataSource);
-  const todosQuery = useTodos(dataSource);
+export function DashboardPage() {
+  const { settings } = useSettings();
+  const userQuery = useUsers(settings.dataSource);
+  const todosQuery = useTodos(settings.dataSource);
 
   const kpisUsers = useMemo(() => {
     if (userQuery.state.status !== 'success') {
@@ -59,14 +57,14 @@ export function DashboardPage({ dataSource }: Props) {
       <section className={styles.grid}>
         <section className={styles.colLeft}>
           <UserWidget
-            dataSource={dataSource}
+            dataSource={settings.dataSource}
             userState={userQuery.state}
             userRefetch={userQuery.refetch}
           />
         </section>
         <section className={styles.colRight}>
           <TodoWidget
-            dataSource={dataSource}
+            dataSource={settings.dataSource}
             todoRefetch={todosQuery.refetch}
             todoState={todosQuery.state}
           />

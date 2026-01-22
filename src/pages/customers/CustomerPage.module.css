@@ -20,6 +20,12 @@
   column-gap: 8px;
 }
 
+.virtualizationStatus {
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
 .label {
   font-size: 1.1rem;
   font-weight: bold;

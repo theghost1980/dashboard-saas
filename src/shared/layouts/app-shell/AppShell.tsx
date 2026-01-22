@@ -2,20 +2,17 @@ import styles from './AppShell.module.css';
 import type { DataSource } from '@/types/app';
 import type { NavItem } from '@/types/navigation';
 import { NavLink, Outlet } from 'react-router';
+import { useSettings } from '@/app/context/hooks/useSettings';
 
 type Props = {
   title: string;
   navItems: NavItem[];
-  dataSource: DataSource;
-  onDataSourceChange: (next: DataSource) => void;
 };
 
-export function AppShell({
-  title,
-  navItems,
-  dataSource,
-  onDataSourceChange,
-}: Props) {
+export function AppShell({ title, navItems }: Props) {
+  const { settings, handleSettingChange } = useSettings();
+  console.log({ settings });
+
   return (
     <div className={styles.shell}>
       <a className={styles.skipLink} href="#main-content">
@@ -44,8 +41,10 @@ export function AppShell({
             <select
               id="data-source-selector"
               className={styles.select}
-              value={dataSource}
-              onChange={(e) => onDataSourceChange(e.target.value as DataSource)}
+              value={settings.dataSource}
+              onChange={(e) =>
+                handleSettingChange('dataSource', e.target.value as DataSource)
+              }
             >
               <option value={'jsonplaceholder'}>JSONPlaceHolder</option>
               <option value={'dummyjson'}>DummyJSON</option>
@@ -53,10 +52,6 @@ export function AppShell({
           </div>
 
           <div className={styles.headerRight}>
-            <button className={styles.button} type="button">
-              Nuevo
-            </button>
-
             <button
               className={styles.userButton}
               type="button"

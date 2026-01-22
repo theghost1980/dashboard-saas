@@ -10,6 +10,7 @@ interface Props {
   };
   onClick?: () => void;
   disabled?: boolean;
+  overwriteContainerClassName?: string;
 }
 
 export function Switch({
@@ -19,9 +20,10 @@ export function Switch({
   onChange,
   onClick,
   disabled,
+  overwriteContainerClassName,
 }: Props) {
   return (
-    <label className={styles.switchContainer}>
+    <label className={overwriteContainerClassName ?? styles.switchContainer}>
       <span className={styles.labelSpan}>
         {label} {`${checked ? labels.on : labels.off}`}
       </span>
