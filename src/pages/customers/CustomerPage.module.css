@@ -1,5 +1,60 @@
-.customersPag {
+.customersPage {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.topContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchBox {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  padding: 16px;
+  column-gap: 8px;
+}
+
+.label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--primary-text-color);
+}
+
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableHeader {
+  position: sticky;
+  top: 0;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.tableBody {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tableRow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }

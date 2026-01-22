@@ -28,7 +28,10 @@ export function AppRouter({ dataSource, onDataSourceChange }: Props) {
           }
         >
           <Route index element={<DashboardPage dataSource={dataSource} />} />
-          <Route path="customers" element={<CustomersPage />} />
+          <Route
+            path="customers"
+            element={<CustomersPage dataSource={dataSource} />}
+          />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

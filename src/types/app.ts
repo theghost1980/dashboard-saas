@@ -20,3 +20,28 @@ export interface InternalTodo {
   title: string;
   completed: boolean;
 }
+
+export interface InternalCustomer {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  source: DataSource;
+  activity: {
+    todosTotal: number;
+    todosPending: number;
+    todosCompleted: number;
+    todosCompletionRate: number;
+  };
+}
+
+export interface Stats {
+  total: number;
+  completed: number;
+  pending: number;
+  completionRate: number;
+}
+
+export interface UserStats {
+  [userId: number]: Stats;
+}

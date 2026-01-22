@@ -28,6 +28,19 @@ export function UserWidget({ dataSource, userRefetch, userState }: Props) {
     });
   }, [users, debouncedQuery]);
 
+  const renderUser = (u: InternalUser) => {
+    return (
+      <div className={styles.userCard}>
+        {u.image && (
+          <img className={styles.avatar} src={u.image} alt={`${u.name}-img`} />
+        )}
+        <p className={styles.name}>
+          {u.name} ID:{u.id}
+        </p>
+      </div>
+    );
+  };
+
   return (
     <div className={styles.card}>
       <section>
@@ -77,7 +90,7 @@ export function UserWidget({ dataSource, userRefetch, userState }: Props) {
           overscan={5}
           list={filteredUsers}
           getKey={(filteredUsers) => filteredUsers.id}
-          renderItem={(u) => <p>{u.name}</p>}
+          renderItem={renderUser}
         />
       </ShimmerOverlay>
     </div>

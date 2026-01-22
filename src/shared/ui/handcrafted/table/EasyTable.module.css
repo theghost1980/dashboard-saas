@@ -1,0 +1,49 @@
+.tableShell {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+}
+
+.headerRow {
+  display: grid;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.headerCell {
+  padding: 12px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.bodyScroll {
+  max-height: 520px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dataRow {
+  display: grid;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.dataRow:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.dataCell {
+  padding: 10px 12px;
+  font-size: 14px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}

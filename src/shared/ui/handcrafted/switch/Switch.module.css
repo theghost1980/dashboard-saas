@@ -1,0 +1,56 @@
+:root {
+  --min-padding: 1px;
+  --slider-circle-diameter: 18px;
+}
+
+.switchContainer {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+  padding-right: 8px;
+}
+.switchContainer:hover {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.labelSpan {
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.slider {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 40px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 12px;
+  background: rgb(238, 227, 227);
+  padding: var(--min-padding);
+  box-sizing: border-box;
+}
+.slider::before {
+  position: absolute;
+  content: '';
+  left: var(--min-padding);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--slider-circle-diameter);
+  height: var(--slider-circle-diameter);
+  background: rgb(128, 122, 168);
+  border-radius: 50%;
+}
+input:checked + .slider::before {
+  left: calc(100% - var(--min-padding) - var(--slider-circle-diameter));
+  background: rgb(57, 46, 128);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .slider::before {
+    transition: 0.6s ease-in-out;
+  }
+}
