@@ -3,6 +3,8 @@ import styles from './CustomerPage.module.css';
 import type {
   DataSource,
   InternalCustomer,
+  Sort,
+  SortKey,
   Stats,
   UserStats,
 } from '@/types/app';
@@ -12,6 +14,7 @@ import { useDebouncedValue } from '@/shared/hooks/useDebouncedValue';
 import { EasyTableVirtualized } from '@/shared/ui/handcrafted/table/EasyTableVirtualized';
 import { Switch } from '@/shared/ui/handcrafted/switch/Switch';
 import { EasyTableSimple } from '@/shared/ui/handcrafted/table/EasyTableSimple';
+import { getCustomerValue } from '@/shared/utils/utils';
 
 interface Props {
   dataSource: DataSource;
@@ -19,15 +22,18 @@ interface Props {
 
 export function CustomersPage({ dataSource }: Props) {
   const [query, setQuery] = useState('');
-  const debouncedQuery = useDebouncedValue(query, 300);
-
   const [virtualizationUI, setVirtualizationUI] = useState(true);
   const [virtualizationApplied, setVirtualizationApplied] = useState(true);
+  const [sort, setSort] = useState<Sort>({
+    key: 'name',
+    order: 'asc',
+  });
 
   const [isPending, startTransition] = useTransition();
 
   const users = useUsers(dataSource);
   const todos = useTodos(dataSource);
+  const debouncedQuery = useDebouncedValue(query, 300);
 
   const customerData = useMemo(() => {
     let userTodos: UserStats = {};
@@ -65,24 +71,61 @@ export function CustomersPage({ dataSource }: Props) {
       };
     });
     return finalUsersStats;
-  }, [users.state.data, todos.state.data]);
+  }, [users.state.data, todos.state.data, dataSource]);
 
-  const filteredCostumers = useMemo(() => {
+  const filteredCustomers = useMemo(() => {
     const q = debouncedQuery.trim().toLowerCase();
     if (!q) return customerData;
 
     return customerData.filter((c) => {
       const n = c.name.toLowerCase();
+      const u = c.username.toLowerCase();
       const e = c.email.toLowerCase();
-      return n.includes(q) || e.includes(q);
+      return n.includes(q) || e.includes(q) || u.includes(q);
     });
   }, [customerData, debouncedQuery]);
+
+  const sortedCustomers = useMemo(() => {
+    const copyFilteredCustomers = [...filteredCustomers];
+    const k = sort.key;
+    const o = sort.order;
+    if (k === 'name' || k === 'email' || k === 'username') {
+      copyFilteredCustomers.sort((a: InternalCustomer, b: InternalCustomer) => {
+        const va = getCustomerValue.getStringValue(a, k);
+        const vb = getCustomerValue.getStringValue(b, k);
+        if (o === 'asc') {
+          return va.localeCompare(vb);
+        } else {
+          return vb.localeCompare(va);
+        }
+      });
+    } else if (k === 'pending' || k === 'rate') {
+      copyFilteredCustomers.sort((a: InternalCustomer, b: InternalCustomer) => {
+        const va = getCustomerValue.getNumberValue(a, k);
+        const vb = getCustomerValue.getNumberValue(b, k);
+        if (o === 'asc') {
+          return va - vb;
+        } else {
+          return vb - va;
+        }
+      });
+    }
+    return copyFilteredCustomers;
+  }, [filteredCustomers, sort.key, sort.order]);
 
   const onToggleVirtualization = (nextChecked: boolean) => {
     setVirtualizationUI(nextChecked);
     startTransition(() => {
       setVirtualizationApplied(nextChecked);
     });
+  };
+
+  const handleSetSort = (key: SortKey) => {
+    const k = key;
+    let prevOrder = sort.order;
+    if (prevOrder === 'asc') prevOrder = 'desc';
+    else prevOrder = 'asc';
+    setSort({ key: k, order: prevOrder });
   };
 
   return (
@@ -115,11 +158,14 @@ export function CustomersPage({ dataSource }: Props) {
 
       {virtualizationApplied ? (
         <EasyTableVirtualized
-          customers={filteredCostumers}
+          customers={sortedCustomers}
           virtualize={virtualizationApplied}
+          resetKey={debouncedQuery}
+          onSort={(k) => handleSetSort(k)}
+          sort={sort}
         />
       ) : (
-        <EasyTableSimple customers={filteredCostumers} />
+        <EasyTableSimple customers={sortedCustomers} />
       )}
     </div>
   );

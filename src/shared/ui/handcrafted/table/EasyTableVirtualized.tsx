@@ -1,4 +1,4 @@
-import type { InternalCustomer } from '@/types/app';
+import type { InternalCustomer, Sort, SortKey } from '@/types/app';
 import styles from './EasyTable.module.css';
 import React from 'react';
 import { columns } from './EasyTableColumns';
@@ -8,6 +8,8 @@ import { renderRow } from './utils/EasyTableFuntions';
 interface Props {
   customers: InternalCustomer[];
   virtualize: boolean;
+  sort?: Sort;
+  onSort?: (key: SortKey) => void;
   resetKey?: string | number;
 }
 
@@ -15,6 +17,8 @@ export function EasyTableVirtualized({
   customers,
   virtualize,
   resetKey,
+  onSort,
+  sort,
 }: Props) {
   const gridTemplateColumns = columns.map((c) => c.width).join(' ');
   const scrollRef = React.useRef<HTMLDivElement | null>(null);
@@ -28,6 +32,11 @@ export function EasyTableVirtualized({
     rowHeight: 52,
     overscan: 9,
   });
+
+  const handleSortClick = (sortKey?: SortKey) => {
+    if (!sortKey || !onSort) return;
+    onSort(sortKey);
+  };
 
   if (customers.length === 0) {
     return (
@@ -51,10 +60,15 @@ export function EasyTableVirtualized({
             <div
               key={col.key}
               className={styles.headerCell}
-              style={{ textAlign: col.align ?? 'left' }}
+              style={{
+                textAlign: col.align ?? 'left',
+                cursor: col.sortKey ? 'pointer' : 'default',
+              }}
               role="columnheader"
+              onClick={() => handleSortClick(col.sortKey)}
             >
-              {col.header}
+              {col.header}{' '}
+              {sort?.order === 'asc' && col.sortKey === sort?.key ? '↑' : '↓'}
             </div>
           ))}
         </div>

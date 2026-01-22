@@ -45,3 +45,11 @@ export interface Stats {
 export interface UserStats {
   [userId: number]: Stats;
 }
+
+export type SortKey = 'name' | 'email' | 'username' | 'pending' | 'rate';
+export type SortOrder = 'asc' | 'desc';
+
+export interface Sort {
+  key: SortKey;
+  order: SortOrder;
+}
