@@ -11,7 +11,6 @@ type Props = {
 
 export function AppShell({ title, navItems }: Props) {
   const { settings, handleSettingChange } = useSettings();
-  console.log({ settings });
 
   return (
     <div className={styles.shell}>
