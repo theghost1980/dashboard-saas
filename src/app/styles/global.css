@@ -38,6 +38,7 @@
 html,
 body {
   height: 100%;
+  background-color: var(--bg-1);
 }
 
 body {
@@ -62,7 +63,7 @@ body {
     color 0.4s ease,
     background-color 0.4s ease;
 }
-body[data-theme='dark'] {
+html[data-theme='dark'] {
   --bg-1: black;
   --text-1: white;
 }

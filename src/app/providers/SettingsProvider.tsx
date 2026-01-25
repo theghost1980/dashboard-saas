@@ -26,7 +26,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    document.body.dataset.theme = settings.theme;
+    document.documentElement.dataset.theme = settings.theme;
   }, [settings.theme]);
 
   return (
