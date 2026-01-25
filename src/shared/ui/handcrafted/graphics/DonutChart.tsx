@@ -5,6 +5,9 @@ type Props = {
   label: string;
 };
 
+/**
+ * @param value number bewteen 0 and 1
+ */
 export function DonutChart({ value, label }: Props) {
   const r = 18;
   const c = 2 * Math.PI * r;
@@ -36,8 +39,8 @@ export function DonutChart({ value, label }: Props) {
         </g>
       </svg>
       <div className={styles.labels}>
-        <div style={{ fontSize: 12, color: '#666' }}>{label}</div>
-        <div style={{ fontWeight: 600 }}>{Math.round(value * 100)}%</div>
+        <div className={styles.label}>{label}</div>
+        <div className={styles.value}>{Math.round(value * 100)}%</div>
       </div>
     </div>
   );

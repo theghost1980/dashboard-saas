@@ -1,8 +1,3 @@
-:root {
-  --min-padding: 1px;
-  --slider-circle-diameter: 18px;
-}
-
 .switchContainer {
   cursor: pointer;
   display: flex;
@@ -31,13 +26,13 @@
   border: 1px solid black;
   border-radius: 12px;
   background: rgb(238, 227, 227);
-  padding: var(--min-padding);
+  padding: 1px;
   box-sizing: border-box;
 }
 .slider::before {
   position: absolute;
   content: '';
-  left: var(--min-padding);
+  left: 1px;
   top: 50%;
   transform: translateY(-50%);
   width: var(--slider-circle-diameter);
@@ -46,7 +41,7 @@
   border-radius: 50%;
 }
 input:checked + .slider::before {
-  left: calc(100% - var(--min-padding) - var(--slider-circle-diameter));
+  left: calc(100% - 1px - var(--slider-circle-diameter));
   background: rgb(57, 46, 128);
 }
 

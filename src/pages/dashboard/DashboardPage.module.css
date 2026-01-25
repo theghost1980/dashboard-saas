@@ -1,10 +1,3 @@
-:root {
-  --primary-text-color: #111;
-  --secondary-text-color: #666;
-  --badge-text-color: #544f4f;
-  --badge-background-color: rgb(236, 233, 233);
-}
-
 .dashboard {
   display: flex;
   flex-direction: column;

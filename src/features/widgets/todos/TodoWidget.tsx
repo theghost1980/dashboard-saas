@@ -100,7 +100,7 @@ export function TodoWidget({ dataSource, todoRefetch, todoState }: Props) {
             list={todos}
             getKey={(t) => t.id}
             renderItem={(item) => (
-              <p>
+              <p className={styles.todoItem}>
                 {item.title} {item.completed && '✔'}
               </p>
             )}

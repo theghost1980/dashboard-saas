@@ -3,7 +3,7 @@
   overflow: auto;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 12px;
-  background: #fff;
+  background: var(--bg-1);
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0);
 }

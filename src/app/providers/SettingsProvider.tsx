@@ -4,22 +4,30 @@ import { SettingsContext } from '../context/SettingsContext';
 import { DEFAULT_SETTINGS } from '@/shared/config/config';
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
-  const [settings, setSettings] = useState<AppSettings>(DEFAULT_SETTINGS);
-
-  useEffect(() => {
+  const [settings, setSettings] = useState<AppSettings>(() => {
     const storedSettings = localStorage.getItem('appSettings');
-    if (storedSettings) {
-      setSettings(JSON.parse(storedSettings));
-    } else {
-      setSettings(DEFAULT_SETTINGS);
+    try {
+      if (storedSettings) {
+        return JSON.parse(storedSettings);
+      } else {
+        return DEFAULT_SETTINGS;
+      }
+    } catch (error) {
+      return DEFAULT_SETTINGS;
     }
-  }, []);
+  });
 
   const handleSettingChange: SettingChangeHandler = (key, value) => {
-    const newSettings = { ...settings, [key]: value };
-    setSettings(newSettings);
-    localStorage.setItem('appSettings', JSON.stringify(newSettings));
+    setSettings((prevSettings) => {
+      const next = { ...prevSettings, [key]: value };
+      localStorage.setItem('appSettings', JSON.stringify(next));
+      return next;
+    });
   };
+
+  useEffect(() => {
+    document.body.dataset.theme = settings.theme;
+  }, [settings.theme]);
 
   return (
     <SettingsContext.Provider value={{ settings, handleSettingChange }}>
