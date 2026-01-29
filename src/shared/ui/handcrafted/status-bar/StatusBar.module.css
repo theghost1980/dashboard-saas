@@ -1,83 +1,98 @@
 .statusBar {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  gap: 8px;
+
   width: 100%;
+  min-height: 36px;
+
+  background-color: var(--surface-1);
+  border: 1px solid var(--border-color-1);
+  border-radius: var(--radius-sm);
+
+  padding: 6px 10px;
   overflow: hidden;
-  max-height: 35px;
 }
 
-.error {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  column-gap: 8px;
-}
-
-.retryButton {
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 8px;
-  background: rgb(243, 241, 241);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  font-weight: 500;
-  font-size: 0.8rem;
-}
-.retryButton:hover {
-  background: rgb(222, 217, 217);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
+/* Loading spinner */
 .loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 25px;
-  position: relative;
-  overflow: hidden;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+
+  border: 3px solid color-mix(in srgb, var(--text-3) 35%, transparent);
+  border-top-color: var(--accent-1);
 }
-.loader:before {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  content: '';
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border: 5px solid #0000;
-  border-color: #5441e3 #fff #0000 #0000;
-  border-radius: 50%;
-  box-sizing: border-box;
-  transform: rotate(-200deg);
+
+@supports not (color: color-mix(in srgb, white 50%, black)) {
+  .loader {
+    border: 3px solid rgba(148, 163, 184, 0.35);
+    border-top-color: var(--accent-1);
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .loader:before {
-    animation: rotate 3s ease-in-out infinite;
+  .loader {
+    animation: spin 0.8s linear infinite;
   }
 }
 
-@keyframes rotate {
-  0% {
-    border-width: 8px;
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  25% {
-    border-width: 3px;
-  }
-  50% {
-    transform: rotate(180deg);
-    border-width: 8px;
-  }
-  75% {
-    border-width: 3px;
-  }
-  100% {
-    border-width: 8px;
-  }
+}
+
+/* Error block */
+.error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.error p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-1);
+}
+
+/* Button */
+.retryButton {
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+
+  background-color: var(--surface-2);
+  color: var(--text-1);
+  border: 1px solid var(--border-color-2);
+
+  font-weight: 600;
+  font-size: 0.8rem;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.06s ease;
+}
+
+.retryButton:hover {
+  background-color: var(--surface-3);
+}
+
+.retryButton:active {
+  transform: translateY(1px);
+}
+
+.retryButton:focus-visible {
+  outline: 2px solid var(--accent-1);
+  outline-offset: 2px;
+}
+
+/* Success */
+.success {
+  font-size: 0.85rem;
+  color: var(--text-2);
 }

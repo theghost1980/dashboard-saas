@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { VirtualizedList } from '@/shared/ui/handcrafted/virtualized-list/VirtualizedList';
 import { useDebouncedValue } from '@/shared/hooks/useDebouncedValue';
 import type { AsyncState, DataSource, InternalUser } from '@/types/app';
@@ -14,6 +14,7 @@ interface Props {
 
 export function UserWidget({ dataSource, userRefetch, userState }: Props) {
   const [query, setQuery] = useState('');
+  const [lastUpdated, setLastUpdated] = useState<Date | undefined>(undefined);
   const debouncedQuery = useDebouncedValue(query, 300);
   const users = userState.data;
 
@@ -28,6 +29,21 @@ export function UserWidget({ dataSource, userRefetch, userState }: Props) {
     });
   }, [users, debouncedQuery]);
 
+  const handleRefetch = async () => {
+    try {
+      await userRefetch();
+      setLastUpdated(new Date());
+    } catch (e) {
+      console.error('refetch failed', e);
+    }
+  };
+
+  useEffect(() => {
+    if (userState.status === 'success' && !lastUpdated) {
+      setLastUpdated(new Date());
+    }
+  }, [userState.status, lastUpdated]);
+
   const renderUser = (u: InternalUser) => {
     return (
       <div className={styles.userCard}>
@@ -35,7 +51,8 @@ export function UserWidget({ dataSource, userRefetch, userState }: Props) {
           <img className={styles.avatar} src={u.image} alt={`${u.name}-img`} />
         )}
         <p className={styles.name}>
-          {u.name} ID:{u.id}
+          <span className={styles.userName}>{u.name}</span>
+          <span className={styles.userMeta}>ID: {u.id}</span>
         </p>
       </div>
     );
@@ -47,7 +64,8 @@ export function UserWidget({ dataSource, userRefetch, userState }: Props) {
         <StatusBar
           status={userState.status}
           errorMessage={userState.status === 'error' ? userState.error : ''}
-          onRetry={userRefetch}
+          onRetry={() => void handleRefetch()}
+          lastUpdated={lastUpdated}
         />
       </section>
       <header className={styles.header}>
@@ -73,7 +91,7 @@ export function UserWidget({ dataSource, userRefetch, userState }: Props) {
         <div className={styles.actions}>
           <button
             className={styles.smallButton}
-            onClick={() => void userRefetch()}
+            onClick={() => void handleRefetch()}
           >
             Actualizar
           </button>

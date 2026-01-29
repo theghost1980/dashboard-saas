@@ -6,30 +6,52 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
+
   pointer-events: none;
   position: absolute;
   inset: 0;
-  background: rgba(220, 218, 218, 0.2);
+
+  background-color: var(--shimmer-overlay);
   z-index: 10;
-  border-radius: 8px;
+
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
+
+/* Fallback universal (sin color-mix) */
 .shimmerOverlay::before {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.1;
+
   transform: translateX(-100%);
-  background: linear-gradient(0.25turn, #b3c6ce7b, #19526a50, #3f87a65c);
+  opacity: 1;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--shimmer-highlight),
+    transparent
+  );
+
   z-index: 1;
 }
 
+/* Texto */
 .text {
-  font-weight: 300;
+  position: relative;
+  z-index: 2;
+
+  margin: 8px;
+  font-weight: 500;
   font-size: 0.75rem;
   font-style: italic;
+  color: var(--shimmer-text);
+
+  background-color: rgba(0, 0, 0, 0); /* explícito */
 }
 
+/* Animación solo si el usuario no pidió reducir motion */
 @media (prefers-reduced-motion: no-preference) {
   .shimmerOverlay::before {
     animation: shimmer 1.2s linear infinite;

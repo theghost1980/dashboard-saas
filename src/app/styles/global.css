@@ -1,27 +1,50 @@
 :root {
-  --bg-1: white;
-  --surface-1: white;
-  --surface-2: white;
+  /* Backgrounds & surfaces */
+  --bg-1: #ffffff; /* fondo app */
+  --surface-1: #ffffff; /* cards / panel principal */
+  --surface-2: #f5f7fb; /* hover / inputs / surface suave */
+  --surface-3: #eef2ff; /* selected / highlight suave */
 
-  --text-1: #111;
-  --text-2: #ffffff;
-  --text-3: rgb(149, 142, 142);
+  /* Text */
+  --text-1: #0f172a; /* principal (casi negro) */
+  --text-2: #475569; /* secundario */
+  --text-3: #94a3b8; /* muted */
 
-  --accent-1: white;
+  /* Borders (mejor como color, no como “1px solid …”) */
+  --border-color-1: rgba(15, 23, 42, 0.1);
+  --border-color-2: rgba(15, 23, 42, 0.18);
 
-  --badge-text-color: #544f4f;
-  --badge-background-color: rgb(236, 233, 233);
+  /* Shadow */
+  --shadow-1: 0 2px 10px rgba(15, 23, 42, 0.06);
 
-  --border-1: 1px solid rgba(0, 0, 0, 0.08);
+  /* Accent / focus */
+  --accent-1: #4f46e5; /* indigo */
 
-  --box-shadow-1: 0 2px 10px rgba(0, 0, 0, 0.06);
+  /* Badge */
+  --badge-bg: rgba(15, 23, 42, 0.06);
+  --badge-text: var(--text-2);
 
+  /* Controls */
+  --input-bg: var(--surface-1);
+  --input-text: var(--text-1);
+  --input-placeholder: var(--text-3);
+
+  /* Scrollbar */
+  --scrollbar-thumb: rgba(15, 23, 42, 0.25);
+  --scrollbar-thumb-hover: rgba(15, 23, 42, 0.35);
+  --scrollbar-track: rgba(0, 0, 0, 0);
+
+  /* Misc */
   --slider-circle-diameter: 18px;
-  --shapes-color: rgba(43, 43, 211, 0.8);
+  --shapes-color: rgba(79, 70, 229, 0.85);
 
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
+
+  --shimmer-overlay: rgba(15, 23, 42, 0.06);
+  --shimmer-highlight: rgba(79, 70, 229, 0.18);
+  --shimmer-text: var(--text-2);
 }
 
 *,
@@ -52,20 +75,59 @@ body {
     'Helvetica Neue',
     Arial,
     sans-serif;
-  line-height: 1.5;
 
-  background-color: var(--bg-1);
+  line-height: 1.5;
   color: var(--text-1);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   transition:
-    color 0.4s ease,
-    background-color 0.4s ease;
+    color 0.35s ease,
+    background-color 0.35s ease;
 }
 html[data-theme='dark'] {
-  --bg-1: black;
-  --text-1: white;
+  /* Backgrounds & surfaces */
+  --bg-1: #0b0f14; /* fondo app */
+  --surface-1: #111827; /* cards */
+  --surface-2: #0f172a; /* hover / inputs */
+  --surface-3: rgba(99, 102, 241, 0.14); /* highlight suave */
+
+  /* Text */
+  --text-1: #e5e7eb; /* principal */
+  --text-2: #9ca3af; /* secundario */
+  --text-3: #6b7280; /* muted */
+
+  /* Borders */
+  --border-color-1: rgba(229, 231, 235, 0.14);
+  --border-color-2: rgba(229, 231, 235, 0.22);
+
+  /* Shadow (más profunda / sutil) */
+  --shadow-1: 0 2px 12px rgba(0, 0, 0, 0.45);
+
+  /* Accent */
+  --accent-1: #6366f1;
+
+  /* Badge */
+  --badge-bg: rgba(255, 255, 255, 0.08);
+  --badge-text: var(--text-2);
+
+  /* Controls */
+  --input-bg: #0b1220;
+  --input-text: var(--text-1);
+  --input-placeholder: var(--text-3);
+
+  /* Scrollbar */
+  --scrollbar-thumb: rgba(229, 231, 235, 0.28);
+  --scrollbar-thumb-hover: rgba(229, 231, 235, 0.4);
+  --scrollbar-track: rgba(255, 255, 255, 0.05);
+
+  /* Misc */
+  --shapes-color: rgba(99, 102, 241, 0.9);
+
+  --shimmer-overlay: rgba(255, 255, 255, 0.06);
+  --shimmer-highlight: rgba(99, 102, 241, 0.22);
+  --shimmer-text: var(--text-2);
 }
 
 :focus-visible {

@@ -50,7 +50,7 @@ export function VirtualizedList<T>({
         {
           '--vh': `${containerHeight}px`,
           '--itemH': `${itemHeight}px`,
-          '--totalH': `${list.length * itemHeight}px}`,
+          '--totalH': `${list.length * itemHeight}px`,
         } as React.CSSProperties
       }
       onScroll={(_e) => calculateVisibleItems(containerRef)}
