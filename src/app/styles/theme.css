@@ -19,6 +19,8 @@ html[data-theme='light'] {
   --text-2: #475569; /* secundario */
   --text-3: #94a3b8; /* muted */
 
+  --chart-label: var(--text-2);
+
   /* Borders (mejor como color, no como “1px solid …”) */
   --border-color-1: rgba(15, 23, 42, 0.1);
   --border-color-2: rgba(15, 23, 42, 0.18);
@@ -69,6 +71,8 @@ html[data-theme='dark'] {
   --text-1: #e5e7eb; /* principal */
   --text-2: #9ca3af; /* secundario */
   --text-3: #6b7280; /* muted */
+
+  --chart-label: var(--text-2);
 
   /* Borders */
   --border-color-1: rgba(229, 231, 235, 0.14);

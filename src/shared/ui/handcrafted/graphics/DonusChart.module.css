@@ -15,10 +15,11 @@
 }
 
 .label {
-  font-size: 12px;
-  color: '#666';
+  font-size: var(--font-size-xs);
+  color: var(--text-2);
 }
 
 .value {
   font-weight: 600;
+  color: var(--text-1);
 }
