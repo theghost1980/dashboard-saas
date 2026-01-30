@@ -1,8 +1,8 @@
 .tableShell {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 12px;
+  border: 1px solid var(--border-color-1);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  background: var(--bg-1);
+  background: var(--surface-1);
 }
 
 .headerRow {
@@ -10,14 +10,14 @@
   position: sticky;
   top: 0;
   z-index: 2;
-  background: var(--bg-1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  background: var(--surface-1); /* o var(--table-header-bg) si lo creas */
+  border-bottom: 1px solid var(--border-color-1);
 }
 
 .headerCell {
-  padding: 12px;
+  padding: var(--space-3);
   font-weight: 600;
-  font-size: 13px;
+  font-size: 13px; /* si quieres tokenizar luego: --font-size-sm/--font-size-xs */
   color: var(--text-1);
 }
 
@@ -30,18 +30,18 @@
 
 .dataRow {
   display: grid;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid var(--table-row-divider);
   box-sizing: border-box;
   align-items: center;
 }
 
 .dataRow:hover {
-  background: rgba(0, 0, 0, 0.03);
+  background: var(--table-row-hover);
 }
 
 .dataCell {
-  padding: 10px 12px;
-  font-size: 14px;
+  padding: 10px var(--space-3);
+  font-size: var(--font-size-sm);
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;

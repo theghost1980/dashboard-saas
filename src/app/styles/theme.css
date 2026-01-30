@@ -52,6 +52,9 @@ html[data-theme='light'] {
   --nav-hover-bg: rgba(15, 23, 42, 0.05);
   --nav-active-bg: rgba(15, 23, 42, 0.08);
   --avatar-bg: rgba(15, 23, 42, 0.15);
+  --table-row-hover: rgba(15, 23, 42, 0.03);
+  --table-row-divider: rgba(15, 23, 42, 0.06);
+  --table-header-bg: var(--surface-1);
 }
 
 html[data-theme='dark'] {
@@ -99,4 +102,7 @@ html[data-theme='dark'] {
   --nav-hover-bg: rgba(255, 255, 255, 0.08);
   --nav-active-bg: rgba(255, 255, 255, 0.12);
   --avatar-bg: rgba(255, 255, 255, 0.16);
+  --table-row-hover: rgba(255, 255, 255, 0.05);
+  --table-row-divider: rgba(255, 255, 255, 0.08);
+  --table-header-bg: var(--surface-1);
 }
