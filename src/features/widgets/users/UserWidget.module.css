@@ -3,8 +3,8 @@
   border: 1px solid var(--border-color-1);
   box-shadow: var(--shadow-1);
   border-radius: var(--radius-lg);
-  padding: 16px;
-  height: 470px;
+  padding: var(--space-4);
+  height: var(--card-height-users);
 }
 
 .header {
@@ -12,15 +12,15 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
 }
 
 .headerTitle {
   display: flex;
   align-items: center;
   flex-direction: row;
-  gap: 10px;
+  gap: var(--space-2-5);
 }
 
 .title {
@@ -30,20 +30,20 @@
 }
 
 .badgeSmall {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   font-weight: 500;
   color: var(--badge-text);
   background-color: var(--badge-bg);
   border: 1px solid var(--border-color-1);
-  border-radius: 999px;
-  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-2);
 }
 
 .searchBox {
   display: flex;
   align-items: center;
   flex-direction: row;
-  column-gap: 8px;
+  column-gap: var(--space-2);
 }
 
 .label {
@@ -57,8 +57,8 @@
   color: var(--input-text);
   border: 1px solid var(--border-color-2);
   border-radius: var(--radius-sm);
-  padding: 6px 10px;
-  height: 34px;
+  padding: var(--space-1-5) var(--space-2-5);
+  height: var(--input-height);
   outline: none;
 }
 
@@ -69,7 +69,7 @@
 /* ✅ Fallback universal */
 .input:focus-visible {
   border-color: var(--accent-1);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.25);
+  box-shadow: 0 0 0 3px var(--focus-shadow);
 }
 
 /* ✅ Mejora progresiva */
@@ -84,8 +84,8 @@
   color: var(--text-1);
   border: 1px solid var(--border-color-2);
   border-radius: var(--radius-sm);
-  padding: 6px 10px;
-  height: 34px;
+  padding: var(--space-1-5) var(--space-2-5);
+  height: var(--input-height);
   transition:
     background-color 0.2s ease,
     border-color 0.2s ease,
@@ -110,9 +110,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  column-gap: 12px;
+  column-gap: var(--space-3);
 
-  padding: 10px 12px;
+  padding: 10px var(--space-3);
   border-radius: var(--radius-sm);
   transition: background-color 0.2s ease;
 }
@@ -124,7 +124,7 @@
 .name {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: var(--space-2);
   margin: 0;
 }
 
@@ -141,9 +141,9 @@
 }
 
 .avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 999px;
+  width: var(--avatar-size-sm);
+  height: var(--avatar-size-sm);
+  border-radius: var(--radius-pill);
   background-color: var(--surface-2);
   border: 1px solid var(--border-color-1);
   display: block;
