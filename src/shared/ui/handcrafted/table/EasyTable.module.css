@@ -10,14 +10,14 @@
   position: sticky;
   top: 0;
   z-index: 2;
-  background: var(--surface-1); /* o var(--table-header-bg) si lo creas */
+  background: var(--surface-1);
   border-bottom: 1px solid var(--border-color-1);
 }
 
 .headerCell {
   padding: var(--space-3);
   font-weight: 600;
-  font-size: 13px; /* si quieres tokenizar luego: --font-size-sm/--font-size-xs */
+  font-size: var(--font-size-sm);
   color: var(--text-1);
 }
 
@@ -26,6 +26,8 @@
   overflow: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 .dataRow {
@@ -48,4 +50,21 @@
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
   color: var(--text-1);
+}
+
+.bodyScroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.bodyScroll::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 8px;
+}
+
+.bodyScroll::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+.bodyScroll::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-track);
 }

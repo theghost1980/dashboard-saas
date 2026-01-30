@@ -131,9 +131,16 @@ export function CustomersPage() {
           />
         </section>
         <section>
-          <p className={styles.virtualizationStatus}>
-            Tabla Virtualizada {settings.virtualization ? 'ON' : 'OFF'}
-          </p>
+          <div className={styles.virtualizationStatus}>
+            Tabla Virtualizada{' '}
+            <div className={styles.statusIndicator}>
+              <span
+                className={settings.virtualization ? styles.on : styles.off}
+              >
+                {settings.virtualization ? 'on ▲' : 'off ▼'}
+              </span>
+            </div>
+          </div>
         </section>
       </div>
 
