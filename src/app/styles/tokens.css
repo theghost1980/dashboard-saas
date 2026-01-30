@@ -29,4 +29,9 @@
   --avatar-size: 32px;
 
   --slider-circle-diameter: 18px;
+
+  --space-1-5: 6px; /* lo usamos varias veces */
+  --space-2-5: 10px; /* padding horizontal */
+  --size-18: 18px; /* loader */
+  --size-36: 36px; /* min-height status bar */
 }

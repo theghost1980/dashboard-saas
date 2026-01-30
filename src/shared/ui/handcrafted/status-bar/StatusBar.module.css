@@ -2,24 +2,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: var(--space-2);
 
   width: 100%;
-  min-height: 36px;
+  min-height: var(--size-36);
 
   background-color: var(--surface-1);
   border: 1px solid var(--border-color-1);
   border-radius: var(--radius-sm);
 
-  padding: 6px 10px;
+  padding: var(--space-1-5) var(--space-2-5);
   overflow: hidden;
 }
 
 /* Loading spinner */
 .loader {
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
+  width: var(--size-18);
+  height: var(--size-18);
+  border-radius: var(--radius-pill);
 
   border: 3px solid color-mix(in srgb, var(--text-3) 35%, transparent);
   border-top-color: var(--accent-1);
@@ -48,7 +48,7 @@
 .error {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-2-5);
   width: 100%;
   justify-content: space-between;
 }
@@ -63,7 +63,7 @@
 .retryButton {
   cursor: pointer;
   border-radius: var(--radius-sm);
-  padding: 6px 10px;
+  padding: var(--space-1-5) var(--space-2-5);
 
   background-color: var(--surface-2);
   color: var(--text-1);
