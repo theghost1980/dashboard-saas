@@ -15,13 +15,13 @@ export function StatusBar({
   onRetry,
   lastUpdated,
 }: Props) {
-  if (status === 'idle') return null;
-
   const now = useNow(60_000);
 
   const getMinutesAgo = (now: Date, lastUpdated: Date) => {
     return getCustomerValue.getlastUpdateMinutesFromNow(now, lastUpdated);
   };
+
+  if (status === 'idle') return null;
 
   return (
     <div className={styles.statusBar}>
