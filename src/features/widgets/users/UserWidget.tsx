@@ -86,6 +86,7 @@ export function UserWidget({ dataSource, userRefetch, userState }: Props) {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setQuery(e.target.value)
             }
+            placeholder="Nombre o email"
           />
         </section>
         <div className={styles.actions}>
