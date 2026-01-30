@@ -17,7 +17,7 @@ export function SettingsPage() {
         overwriteContainerClassName={styles.switchContainer}
       />
       <Switch
-        checked={settings.theme === 'light' ? true : false}
+        checked={settings.theme === 'light'}
         onChange={() =>
           handleSettingChange(
             'theme',
@@ -60,9 +60,9 @@ export function SettingsPage() {
           usaremos la del sistema operativo. Para mayor información{' '}
           <a
             className={styles.extrenalLink}
-            target="__blank"
+            target="_blank"
             rel="noopener"
-            href='https://www.google.com?q="activar animaciones en mi sistema operativo"'
+            href="https://www.google.com/search?q=activar+animaciones+en+mi+sistema+operativo"
           >
             clic aquí
           </a>
