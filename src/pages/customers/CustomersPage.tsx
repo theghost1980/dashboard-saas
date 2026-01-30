@@ -128,11 +128,12 @@ export function CustomersPage() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setQuery(e.target.value)
             }
+            placeholder="Nombre, usuario o email"
           />
         </section>
         <section>
           <div className={styles.virtualizationStatus}>
-            Tabla Virtualizada{' '}
+            {sortedCustomers.length} clientes • tabla Virtualizada{' '}
             <div className={styles.statusIndicator}>
               <span
                 className={settings.virtualization ? styles.on : styles.off}
