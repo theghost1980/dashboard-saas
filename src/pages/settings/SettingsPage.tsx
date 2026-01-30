@@ -13,7 +13,7 @@ export function SettingsPage() {
           handleSettingChange('virtualization', !settings.virtualization)
         }
         label="Virtualización de Tabla"
-        labels={{ on: 'ON', off: 'OFF' }}
+        labels={{ on: 'on ▲', off: 'off ▼' }}
         overwriteContainerClassName={styles.switchContainer}
       />
       <Switch

@@ -1,45 +1,55 @@
 .settingsPage {
+  width: min(720px, 100%);
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  width: 80%;
-  height: 60%;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 12px;
-  padding: 12px;
-  align-self: center;
-  justify-self: center;
+  gap: var(--space-4);
+
+  background: var(--surface-1);
+  border: 1px solid var(--border-color-1);
+  box-shadow: var(--shadow-1);
+  border-radius: var(--radius-lg);
+
+  padding: var(--space-4);
 }
 
 .switchContainer {
   cursor: pointer;
+
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  width: 40%;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 12px;
-  padding: 8px;
+  justify-content: space-between;
+  gap: var(--space-3);
+
+  width: 100%;
+  border: 1px solid var(--border-color-1);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  background: var(--surface-1);
 }
 
 .motionSetting {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  gap: var(--space-2);
 }
 
 .motionInfo {
-  padding: 24px;
-  font-size: 0.75rem;
+  margin: 0;
+  padding: var(--space-3);
+  font-size: var(--font-size-xs);
   font-style: italic;
-  max-width: 300px;
+  color: var(--text-2);
+  max-width: 60ch;
 }
 
 .extrenalLink {
   text-decoration: underline;
-  font-weight: bold;
+  font-weight: 700;
+}
+
+.extrenalLink:focus-visible {
+  outline: 2px solid var(--accent-1);
+  outline-offset: 2px;
 }
