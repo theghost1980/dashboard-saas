@@ -94,7 +94,7 @@ export function TodoWidget({ dataSource, todoRefetch, todoState }: Props) {
           loadingText={'Cargando todos...'}
         >
           <VirtualizedList
-            containerHeight={250}
+            containerHeight={210}
             itemHeight={30}
             overscan={5}
             list={todos}
