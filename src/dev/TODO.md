@@ -58,6 +58,10 @@ Sección Resumen Diario de Actividades:
 - [ ] Normalizar nombres: `getKey={(u) => u.id}` (evitar nombre “filteredUsers” como parámetro).
 - [ ] Extraer util de “time ago” a un helper reutilizable (si no lo hiciste ya).
 
+### Funcionalidades / mejoras visuales
+
+- Mover nombre widget-badge a status bar.
+
 ### DX / Mantenimiento
 
 - [ ] Añadir **Stylelint** para detectar variables CSS huérfanas y consistencia.
