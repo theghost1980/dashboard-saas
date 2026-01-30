@@ -1,20 +1,19 @@
 .dashboard {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-4);
+}
+
+.globalSection {
+  display: flex;
+  width: 100%;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
-  gap: 16px;
+  gap: var(--space-4);
   align-items: start;
-}
-
-.globalSection {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
 }
 
 /* responsive */
