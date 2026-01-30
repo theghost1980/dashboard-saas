@@ -45,10 +45,13 @@ html[data-theme='light'] {
 
   /* Misc */
   --shapes-color: rgba(79, 70, 229, 0.85);
-
   --shimmer-overlay: rgba(15, 23, 42, 0.06);
   --shimmer-highlight: rgba(79, 70, 229, 0.18);
   --shimmer-text: var(--text-2);
+  --focus-ring: rgba(15, 23, 42, 0.6); /* antes: rgba(0,0,0,0.6) */
+  --nav-hover-bg: rgba(15, 23, 42, 0.05);
+  --nav-active-bg: rgba(15, 23, 42, 0.08);
+  --avatar-bg: rgba(15, 23, 42, 0.15);
 }
 
 html[data-theme='dark'] {
@@ -89,8 +92,11 @@ html[data-theme='dark'] {
 
   /* Misc */
   --shapes-color: rgba(99, 102, 241, 0.9);
-
   --shimmer-overlay: rgba(255, 255, 255, 0.06);
   --shimmer-highlight: rgba(99, 102, 241, 0.22);
   --shimmer-text: var(--text-2);
+  --focus-ring: rgba(229, 231, 235, 0.7);
+  --nav-hover-bg: rgba(255, 255, 255, 0.08);
+  --nav-active-bg: rgba(255, 255, 255, 0.12);
+  --avatar-bg: rgba(255, 255, 255, 0.16);
 }

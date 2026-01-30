@@ -1,39 +1,39 @@
 .shell {
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: var(--sidebar-width) 1fr;
   min-height: 100vh;
 }
 
 .skipLink {
   position: absolute;
   left: -9999px;
-  top: 12px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  top: var(--space-3);
+  padding: 10px var(--space-3); /* (10px no está en tu escala; OK por ahora) */
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+  border: 1px solid var(--border-color-2);
   text-decoration: none;
   color: inherit;
   z-index: 1000;
 }
 
 .skipLink:focus {
-  left: 12px;
+  left: var(--space-3);
 }
 
 .sidebar {
-  border-right: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 16px;
+  border-right: 1px solid var(--border-color-1);
+  padding: var(--space-4);
 }
 
 .brand {
   font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 16px;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-4);
 }
 
 .nav {
-  margin-top: 8px;
+  margin-top: var(--space-2);
 }
 
 .navList {
@@ -42,7 +42,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .navListItem {
@@ -52,57 +52,57 @@
 
 .navItem {
   display: block;
-  padding: 10px 12px;
-  border-radius: 10px;
+  padding: 10px var(--space-3); /* 10px idem arriba */
+  border-radius: var(--radius-md);
   text-decoration: none;
   color: inherit;
   outline: none;
 }
 
 .navItem:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--nav-hover-bg);
 }
 
 a[aria-current='page'] {
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--nav-active-bg);
   font-weight: 600;
 }
 
 .content {
   display: grid;
-  grid-template-rows: 64px 1fr;
+  grid-template-rows: var(--header-height) 1fr;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0 var(--space-5);
+  border-bottom: 1px solid var(--border-color-1);
 }
 
 .title {
-  font-size: 16px;
+  font-size: var(--font-size-md);
   margin: 0;
 }
 
 .headerMedium {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .headerRight {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .button {
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  background: white;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color-2);
+  background: var(--surface-1);
   cursor: pointer;
 }
 
@@ -110,15 +110,15 @@ a[aria-current='page'] {
   border: none;
   background: transparent;
   padding: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   cursor: pointer;
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.15);
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: var(--radius-pill);
+  background: var(--avatar-bg);
   display: block;
 }
 
@@ -126,10 +126,10 @@ a[aria-current='page'] {
 .navItem:focus-visible,
 .button:focus-visible,
 .userButton:focus-visible {
-  outline: 2px solid rgba(0, 0, 0, 0.6);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
 }
 
 .main {
-  padding: 20px;
+  padding: var(--space-5);
 }

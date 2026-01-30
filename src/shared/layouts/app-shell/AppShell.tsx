@@ -24,7 +24,9 @@ export function AppShell({ title, navItems }: Props) {
           <ul className={styles.navList}>
             {navItems.map((item) => (
               <li key={item.linkTo} className={styles.navListItem}>
-                <NavLink to={item.linkTo}>{item.label}</NavLink>
+                <NavLink className={styles.navItem} to={item.linkTo}>
+                  {item.label}
+                </NavLink>
               </li>
             ))}
           </ul>
