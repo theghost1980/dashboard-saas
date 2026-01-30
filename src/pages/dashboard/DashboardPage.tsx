@@ -55,20 +55,16 @@ export function DashboardPage() {
         />
       </section>
       <section className={styles.grid}>
-        <section className={styles.colLeft}>
-          <UserWidget
-            dataSource={settings.dataSource}
-            userState={userQuery.state}
-            userRefetch={userQuery.refetch}
-          />
-        </section>
-        <section className={styles.colRight}>
-          <TodoWidget
-            dataSource={settings.dataSource}
-            todoRefetch={todosQuery.refetch}
-            todoState={todosQuery.state}
-          />
-        </section>
+        <UserWidget
+          dataSource={settings.dataSource}
+          userState={userQuery.state}
+          userRefetch={userQuery.refetch}
+        />
+        <TodoWidget
+          dataSource={settings.dataSource}
+          todoRefetch={todosQuery.refetch}
+          todoState={todosQuery.state}
+        />
       </section>
     </div>
   );
