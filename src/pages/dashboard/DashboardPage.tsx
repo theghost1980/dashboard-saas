@@ -20,7 +20,7 @@ export function DashboardPage() {
     return {
       totalUsersP: userQuery.state.data.length / 100,
     };
-  }, [userQuery.state.status]);
+  }, [userQuery.state.status, userQuery.state.data.length]);
 
   const kpisTodos = useMemo(() => {
     if (todosQuery.state.status !== 'success') {
@@ -43,7 +43,7 @@ export function DashboardPage() {
       pending,
       completionRateP: completionRate / 100,
     };
-  }, [todosQuery.state]);
+  }, [todosQuery.state.status, todosQuery.state.data.length]);
 
   return (
     <div className={styles.dashboard}>
