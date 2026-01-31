@@ -1,5 +1,5 @@
 import { VirtualizedList } from '@/shared/ui/handcrafted/virtualized-list/VirtualizedList';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styles from './TodoWidget.module.css';
 import type { AsyncState, DataSource, InternalTodo } from '@/types/app';
 import { ShimmerOverlay } from '@/shared/ui/handcrafted/shimmer/ShimmerOverlay';
@@ -12,6 +12,7 @@ interface Props {
 }
 
 export function TodoWidget({ dataSource, todoRefetch, todoState }: Props) {
+  const [lastUpdated, setLastUpdated] = useState<Date | undefined>(undefined);
   const todos = todoState.data;
 
   const kpis = useMemo(() => {
@@ -26,13 +27,29 @@ export function TodoWidget({ dataSource, todoRefetch, todoState }: Props) {
     return { total, completed, pending, completionRate };
   }, [todos]);
 
+  const handleRefetch = async () => {
+    try {
+      await todoRefetch();
+      setLastUpdated(new Date());
+    } catch (e) {
+      console.error('refetch failed', e);
+    }
+  };
+
+  useEffect(() => {
+    if (todoState.status === 'success' && !lastUpdated) {
+      setLastUpdated(new Date());
+    }
+  }, [todoState.status, lastUpdated]);
+
   return (
     <div className={styles.card}>
       <section>
         <StatusBar
           status={todoState.status}
           errorMessage={todoState.status === 'error' ? todoState.error : ''}
-          onRetry={todoRefetch}
+          onRetry={() => void handleRefetch()}
+          lastUpdated={lastUpdated}
         />
       </section>
       <header className={styles.header}>
@@ -47,7 +64,7 @@ export function TodoWidget({ dataSource, todoRefetch, todoState }: Props) {
         <div className={styles.actions}>
           <button
             className={styles.smallButton}
-            onClick={() => void todoRefetch()}
+            onClick={() => void handleRefetch()}
           >
             Actualizar
           </button>
