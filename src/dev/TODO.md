@@ -61,6 +61,10 @@ Sección Resumen Diario de Actividades:
 ### Funcionalidades / mejoras visuales
 
 - Mover nombre widget-badge a status bar.
+- - [ ] Replace native `<select>` in AppShell with a custom Select component
+  - Reason: native select dropdown does not fully respect dark theme styling and causes visual flicker when opening (browser/OS-controlled UI).
+  - Goal: achieve consistent styling, no color flash, and full control over hover/active states.
+  - Notes: implement as an accessible custom select (button + listbox / ARIA) or use a headless UI approach.
 
 ### DX / Mantenimiento
 

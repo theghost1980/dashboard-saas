@@ -172,6 +172,24 @@ a[aria-current='page'] {
     5px 5px,
     100% 100%;
   background-repeat: no-repeat;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme='light'] .select {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] .select {
+  color-scheme: dark;
+}
+
+.select option {
+  background: var(--surface-1);
+  color: var(--text-1);
+}
+
+.select option:checked {
+  background: var(--surface-2);
 }
 
 .select:hover {
@@ -179,7 +197,7 @@ a[aria-current='page'] {
 }
 
 .select:active {
-  transform: translateY(1px);
+  transform: none;
 }
 
 .select:focus-visible {
