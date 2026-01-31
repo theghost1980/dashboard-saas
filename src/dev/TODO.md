@@ -2,33 +2,108 @@ Sección Resumen Diario de Actividades:
 
 # Día + Resumen:
 
-## Resumen de lo que hicimos hoy
+## Resumen de lo que hicimos hoy 30/1/26
 
-- **Theming “pro” con CSS variables**
-  - Pasaste a **`html[data-theme="dark"]`** y dejaste `:root` como defaults.
-  - Evitaste el **flicker** al recargar con un **script en `<head>`** que setea el theme antes del primer paint.
-  - Dejamos `html/body` consumiendo tokens (`--bg-1`, `--text-1`) y el tema solo **redefine variables**.
+## 🧱 Base de diseño y tokens
 
-- **Sistema de tokens (design tokens)**
-  - Definimos tokens por rol: `bg/surface/text/border/shadow/accent/input/badge`.
-  - Agregaste (o estás agregando) tokens para **shimmer** y **scrollbar** (thumb/track + hover).
+- Unificamos **tokens globales** (`tokens.css`, `theme.css`, `global.css`)
+- Separación clara entre:
+  - **tokens** (tipografía, spacing, radius)
+  - **theme** (colors, surfaces, accents, shadows, scrollbar, shimmer)
 
-- **UserWidget “premium”**
-  - Tokenizaste el CSS del widget (card, badge, input, button) + fallback para `color-mix()`.
-  - Mejoraste filas: padding/hover, separación de **Nombre vs ID** y avatar consistente.
+- Eliminamos colores hardcodeados y variables antiguas (`--primary-text-color`, etc.)
+- Mejoramos consistencia light/dark sin hacks peligrosos
 
-- **VirtualizedList**
-  - Corregiste bug del `--totalH` con `}` extra.
-  - Tokenizaste bordes/background para consistencia con dark mode.
-  - Dejaste el row más “layout-only” (sin tipografías/paddings hardcodeados) para que el item controle su look.
+---
 
-- **ShimmerOverlay**
-  - Lo hiciste theme-friendly con tokens (`--shimmer-overlay`, `--shimmer-highlight`, `--shimmer-text`) + gradiente limpio.
+## 🧭 AppShell
 
-- **StatusBar**
-  - Lo llevaste a un estilo consistente con tokens + loader más moderno + accesibilidad.
-  - Implementaste `lastUpdated` y corregiste el bug de “minutos negativos” (resta al revés).
-  - Usaste opción A para “hace X minutos” con un tick (cada 60s).
+- Limpieza y alineación visual del layout general
+- Mejora del **select de Origen de Datos**:
+  - Estilizado con tokens (input-like)
+  - Eliminado salto visual al hacer click
+  - Identificado límite del `<select>` nativo en dark mode
+
+- Se documentó correctamente como **TODO**:
+  - Reemplazar `<select>` nativo por custom Select accesible
+
+---
+
+## 📊 Dashboard
+
+- Layout refinado:
+  - spacing tokenizado
+  - grid más limpio
+  - markup simplificado (menos wrappers inútiles)
+
+- KPIs:
+  - DonutCharts alineados horizontalmente
+  - Mejores colores, acentos y badges
+  - Mejor jerarquía visual
+
+- Fix importante:
+  - **dependencias incorrectas en `useMemo`** (bug potencial)
+  - Commit separado y bien justificado
+
+---
+
+## 👥 Customers Page
+
+- Refactor completo de estilos:
+  - alineación con tokens
+  - eliminación de CSS muerto
+  - responsive real
+
+- Mejor UX del search
+- Lógica mantenida intacta (buen criterio de commits)
+
+---
+
+## ⚙️ Settings Page
+
+- Convertida en **panel real** (card):
+  - surface, border, shadow
+  - spacing consistente
+  - responsive sin porcentajes frágiles
+
+- Fix de detalles:
+  - typo en `target="_blank"`
+  - simplificación de `checked`
+  - mejora a11y en links
+
+---
+
+## 📜 Virtualized List
+
+- Pulido visual:
+  - padding en filas
+  - hover sutil
+  - separación clara entre borde del contenedor y filas
+
+- Mantuvimos performance intacto
+
+---
+
+## ✨ Shimmer / Loading
+
+- ShimmerOverlay refinado:
+  - respeta border-radius del componente envuelto
+  - animación condicional por `prefers-reduced-motion`
+  - overlay limpio, no invasivo
+  - mejora de accesibilidad (`aria-busy`, `aria-live`)
+
+- Listo como solución reusable y “product-ready”
+
+---
+
+## 🧠 Meta (lo más importante)
+
+- Trabajamos **por commits pequeños y con intención clara**
+- Separación estricta:
+  - estilos vs lógica
+  - fixes vs ajustes visuales
+
+- Identificamos límites reales del navegador y los documentamos (no hacks)
 
 ---
 
