@@ -12,7 +12,11 @@ export function ShimmerOverlay({ children, isLoading, loadingText }: Props) {
     <div className={styles.shimmerContainer}>
       {children}
       {isLoading && (
-        <div className={styles.shimmerOverlay}>
+        <div
+          className={styles.shimmerOverlay}
+          aria-busy="true"
+          aria-live="polite"
+        >
           {loadingText && <span className={styles.text}>{loadingText}</span>}
         </div>
       )}
