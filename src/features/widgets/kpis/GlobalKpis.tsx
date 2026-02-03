@@ -34,11 +34,12 @@ export function GlobalKpis({
   return (
     <div className={styles.globalKpis}>
       <div className={styles.globalKpis}>
-        <DonutChart
-          label={'Usuarios'}
+        <KpiCard
+          label="Usuarios"
           value={usersTotal}
-          delta={0.9}
-          deltaLabel={`vs Mes pasado`}
+          delta={12.5}
+          data={revenueData}
+          theme={setCharKitTheme(theme)}
         />
         <DonutChart
           label={'Todos'}
@@ -64,14 +65,6 @@ export function GlobalKpis({
           categoryKey={'value'}
         />
         <div className={styles.globalKpis}>
-          <KpiCard
-            label="Revenue"
-            value={125000}
-            delta={12.5}
-            data={revenueData}
-            theme={setCharKitTheme(theme)}
-            format={(v) => `$${(v / 1000).toFixed(0)}K`}
-          />
           <KpiCard
             label="Revenue"
             value={12500}
