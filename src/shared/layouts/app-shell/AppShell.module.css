@@ -4,6 +4,10 @@
   min-height: 100vh;
 }
 
+.shellCollapsed {
+  grid-template-columns: 1fr;
+}
+
 .hideSideBar {
   visibility: hidden;
   display: none;

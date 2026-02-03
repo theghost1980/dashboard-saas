@@ -15,7 +15,9 @@ export function AppShell({ title, navItems }: Props) {
   const [sideBarHidden, setSideBarHidden] = useState(false);
 
   return (
-    <div className={styles.shell}>
+    <div
+      className={`${styles.shell} ${sideBarHidden ? styles.shellCollapsed : ''}`}
+    >
       <div className={sideBarHidden ? styles.hideSideBar : styles.showSideBar}>
         <a className={styles.skipLink} href="#main-content">
           Saltar al contenido
