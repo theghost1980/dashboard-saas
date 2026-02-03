@@ -69,7 +69,11 @@ export function AppShell({ title, navItems }: Props) {
               type="button"
               aria-label="Abrir menú de usuario"
             >
-              <span className={styles.avatar} aria-hidden="true" />
+              <img
+                src={'vite.svg'}
+                className={styles.avatar}
+                aria-hidden="true"
+              />
             </button>
           </div>
         </header>
