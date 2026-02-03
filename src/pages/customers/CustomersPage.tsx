@@ -69,7 +69,13 @@ export function CustomersPage() {
       };
     });
     return finalUsersStats;
-  }, [users.state.data, todos.state.data, settings.dataSource]);
+  }, [
+    users.state.data,
+    todos.state.data,
+    settings.dataSource,
+    users.state.status,
+    todos.state.status,
+  ]);
 
   const filteredCustomers = useMemo(() => {
     const q = debouncedQuery.trim().toLowerCase();
