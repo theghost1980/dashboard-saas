@@ -7,6 +7,7 @@ import {
   revenueData,
   revenueData2,
 } from '@/shared/config/config';
+import { overrideMinStyles } from '@/shared/config/styles';
 
 type Props = {
   usersTotal: number;
@@ -30,6 +31,7 @@ export function GlobalKpis({
           delta={12.5}
           data={revenueData}
           theme={setCharKitTheme(theme)}
+          style={overrideMinStyles}
         />
       </div>
       <div className="chartWrapper">
@@ -40,6 +42,7 @@ export function GlobalKpis({
           data={revenueData2}
           theme={setCharKitTheme(theme)}
           format={(v) => `${v * 100}`}
+          style={overrideMinStyles}
         />
       </div>
       <div className="chartWrapper">
@@ -50,6 +53,7 @@ export function GlobalKpis({
           data={revenueData2}
           theme={setCharKitTheme(theme)}
           format={(v) => `${v * 100}%`}
+          style={overrideMinStyles}
         />
       </div>
       <DonutChart
@@ -62,6 +66,7 @@ export function GlobalKpis({
         padAngle={2}
         dataKey={'value'}
         labelKey={'category'}
+        style={overrideMinStyles}
       />
     </div>
   );
