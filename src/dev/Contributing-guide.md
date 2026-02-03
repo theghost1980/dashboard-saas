@@ -38,3 +38,7 @@ feat/user-widget-polish
 fix/theme-flicker
 refactor/virtualized-list
 ```
+
+---
+
+⬅️ Volver al [README](../../README.md)

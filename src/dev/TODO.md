@@ -77,4 +77,6 @@ una fase clara de optimización / hardening.
 
 - [ ] Añadir Stylelint para detectar variables CSS huérfanas y consistencia.
 
-- [ ] Documentar en README: theming + decisiones técnicas (p.ej. no hacks al select).
+---
+
+⬅️ Volver al [README](../../README.md)

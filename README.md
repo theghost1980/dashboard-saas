@@ -1,88 +1,184 @@
-### 📊 Dashboard SaaS (Software as a Service)
+# 🚀 Dashboard SaaS — Frontend Architecture & UI Systems
 
-Este proyecto tiene como finalidad **demostrar de manera práctica una implementación sólida de arquitectura y diseño de sistemas para aplicaciones web**.
-Forma parte de mi perfil profesional y está pensado como un proyecto en evolución, donde la profundidad y la calidad priman sobre la cantidad de funcionalidades.
+Este proyecto es un **dashboard SaaS moderno**, construido como ejercicio profesional para demostrar:
 
-Una de las ideas centrales es **profundizar al máximo en un mismo proyecto**, recorriendo de forma consciente las distintas fases que atraviesa un producto real.
+- arquitectura frontend limpia y escalable
+- diseño consistente basado en tokens y themes
+- decisiones técnicas conscientes (sin hacks)
+- foco en UX real y mantenibilidad
+- optimización progresiva (no premature optimization)
 
----
-
-### 🎯 Objetivo del proyecto
-
-El objetivo de este dashboard no es ser un simple ejercicio visual, sino un **caso práctico de diseño de software frontend**, enfocado en:
-
-- arquitectura mantenible y escalable
-- separación clara de responsabilidades
-- buenas prácticas aplicadas de forma consistente
-- experiencia de usuario, accesibilidad y rendimiento
+No es una demo visual: es una **aplicación pensada como producto**.
 
 ---
 
-### 📘 Prólogo conceptual
+## 🧱 Stack principal
 
-En una era donde estamos constantemente expuestos a miles de tutoriales, frameworks y “formas correctas” de hacer lo mismo, resulta fácil caer en un aprendizaje superficial.
+- **React + TypeScript**
+- **Vite**
+- **CSS Modules**
+- **ChartKit** (charts con dependencias mínimas)
+- **React Router**
+- **Virtualized Lists (handcrafted)**
 
-Con frecuencia:
-
-- se completan muchos tutoriales sin profundizar en ninguno
-- se mezclan patrones y estilos sin un criterio claro
-- se aplican técnicas de forma parcial, sin entender sus implicaciones
-- se evita el análisis real que requieren los proyectos de producción
-
-Esto suele llevar a:
-
-- pasar por alto buenas prácticas fundamentales
-- no desarrollar criterio en patrones de diseño y arquitectura
-- dificultad al enfrentar proyectos reales con ciclos completos como:
-  - análisis
-  - diseño
-  - ejecución
-  - revisión y refactorización
-  - testing (unitario y E2E)
-  - accesibilidad real
-  - optimización basada en métricas
-
-Este proyecto nace como un **antídoto a ese enfoque superficial**, apostando por un desarrollo más reflexivo, iterativo y alineado con escenarios reales de producción.
+Sin librerías de UI pesadas.
+La intención es **entender y controlar** cada capa.
 
 ---
 
-### 🧱 Stack tecnológico
+## ✨ Features principales
 
-- **React** (UI y composición de componentes)
-- **TypeScript** (tipado, contratos y seguridad)
-- **Vite** (entorno de desarrollo y build)
-- **CSS Modules** (estilos desacoplados y escalables)
+- AppShell con sidebar colapsable
+- Dashboard con KPIs reales + gráficos
+- Customers page con:
+  - búsqueda
+  - sorting
+  - virtualización
+  - gráficos derivados del estado
 
-El stack fue elegido priorizando **claridad, control y ergonomía de desarrollo**, evitando dependencias innecesarias.
-
----
-
-### 🏗 Arquitectura del proyecto
-
-La arquitectura se basa en una **separación clara de responsabilidades**, evitando acoplamientos innecesarios entre lógica, datos y presentación.
-
-De forma simplificada, el proyecto se organiza en tres grandes capas:
-
-- **Hooks**
-  Encargados de la lógica de negocio, acceso a datos, control de estado asíncrono y normalización de información.
-
-- **Componentes / Pages**
-  Orquestan los hooks, combinan datos y definen la estructura de cada vista.
-
-- **UI / Presentational components**
-  Componentes puramente visuales, reutilizables y desacoplados de la lógica de negocio.
-
-Este enfoque permite:
-
-- reutilización
-- testeo más sencillo
-- refactorizaciones seguras
-- evolución progresiva del sistema
+- Settings page como panel real (no formulario plano)
+- Light / Dark mode consistente
+- Loading states con shimmer accesible
+- Tokens y themes desacoplados del layout
 
 ---
 
-6. _(más adelante)_ Features actuales
-7. _(más adelante)_ Roadmap
-8. _(más adelante)_ Accesibilidad, testing, performance
+## 🎨 Sistema de diseño
+
+- **Tokens CSS** (`spacing`, `radius`, `fonts`, `sizes`)
+- **Themes** (`light` / `dark`) usando `data-theme`
+- Sin colores hardcodeados en componentes
+- Superficies (`surface-1`, `surface-2`, etc.) bien definidas
+- Shadows, borders y focus states unificados
 
 ---
+
+## 📊 Charts
+
+- Gráficos encapsulados en `chartPanel`
+- El fondo del chart **no depende del theme interno** de la librería
+- Consistencia visual garantizada en light/dark
+- Datos derivados con `useMemo` (no en render)
+
+---
+
+## 🧠 Filosofía de trabajo
+
+- Cambios pequeños y atómicos
+- No mezclar lógica, estilos y refactors
+- Identificar límites reales del browser (y respetarlos)
+- Optimizar **cuando hay evidencia**, no antes
+- Código legible > código “ingenioso”
+
+---
+
+## 🔍 Estado del proyecto
+
+Este proyecto se considera **funcional y presentable**, con una lista clara de mejoras **dejadas intencionalmente** para futuras Iteraciones pendientes (ver [TODO.md](src/dev/TODO.md))
+
+---
+
+## 🔍 Contribuciones posibles pero con reglas
+
+Este proyecto también admite mejoras que como usuarios y programadores puedan hacerse, pero para cumplir con estándares de proyectos reales, tenemos una:
+Guía de contribución (ver [CONTRIBUTING.md](src/dev/Contributing-guide.md))
+
+---
+
+<details>
+  <summary><strong>🔧 Technical details (architecture & decisions)</strong></summary>
+
+### 📁 Estructura y separación de responsabilidades
+
+- **Pages**
+  Orquestan datos + layout, sin lógica de bajo nivel.
+
+- **Features / Widgets**
+  Componentes con responsabilidad clara (KPIs, Users, Todos).
+
+- **Shared / UI (handcrafted)**
+  Componentes reutilizables creados a mano:
+  - VirtualizedList
+  - ShimmerOverlay
+  - StatusBar
+  - Switch
+  - Tables (simple / virtualized)
+
+---
+
+### ⚙️ Data derivation & performance
+
+- Datos derivados con `useMemo`
+- Early returns cuando `status !== success`
+- Sorting optimizado:
+  - comparador único
+  - dirección (`asc / desc`) numérica
+  - **stable sort** para UX consistente
+
+- Callbacks críticos memoizados (`useCallback`)
+- Debounce controlado para búsquedas
+
+---
+
+### 🧩 Sorting estable (por qué importa)
+
+El sorting en Customers es **estable**:
+si dos filas empatan en el valor de ordenación, mantienen su orden relativo original.
+
+Esto evita “saltos” visuales y mejora la percepción de calidad del producto.
+
+---
+
+### 🎛️ AppShell & decisiones técnicas
+
+- Sidebar colapsable usando CSS Grid
+- No hacks visuales para el `<select>` nativo en dark mode
+  → decisión consciente de **reemplazarlo en el futuro** por un custom select accesible
+- Accesibilidad considerada:
+  - skip links
+  - focus-visible
+  - prefers-reduced-motion
+
+---
+
+### ♿ Accesibilidad
+
+- Shimmer respeta `prefers-reduced-motion`
+- Focus rings visibles
+- Inputs y botones con estados claros
+- Contraste revisado para light/dark
+
+---
+
+### 🧹 CSS hygiene
+
+- Limpieza de clases huérfanas
+- CSS Modules estrictos
+- Tokens centralizados
+- Sin estilos globales “accidentales”
+
+---
+
+### 🚧 Mejoras pendientes (intencionales)
+
+- Estados completos en Customers (error / empty)
+- Custom Select accesible
+- Tokens de estados (`success / warn / error`)
+- Stylelint
+- Pulido final de scrollbars y focus states
+
+Estas mejoras están documentadas en `TODO.md`.
+
+</details>
+
+---
+
+## 📌 Nota final
+
+Este proyecto está pensado como:
+
+- **portfolio serio**
+- base para entrevistas técnicas
+- ejemplo de cómo crecer una app sin perder control
+
+Si eres recruiter o engineer, el código está escrito para ser **leído y entendido**, no solo para “funcionar”.
