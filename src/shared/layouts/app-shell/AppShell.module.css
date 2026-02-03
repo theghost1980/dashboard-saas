@@ -21,6 +21,7 @@
   color: var(--text-2);
   padding: var(--space-1);
   top: 50%;
+  z-index: 999;
 }
 .toogleViewBtn:hover {
   cursor: pointer;
