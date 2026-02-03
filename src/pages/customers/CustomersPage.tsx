@@ -108,16 +108,12 @@ export function CustomersPage() {
     return copyFilteredCustomers;
   }, [filteredCustomers, sort.key, sort.order]);
 
-  const handleSetSort = useCallback(
-    (key: SortKey) => {
-      const k = key;
-      let prevOrder = sort.order;
-      if (prevOrder === 'asc') prevOrder = 'desc';
-      else prevOrder = 'asc';
-      setSort({ key: k, order: prevOrder });
-    },
-    [sort],
-  );
+  const handleSetSort = useCallback((key: SortKey) => {
+    setSort((prev) => ({
+      key,
+      order: prev.order === 'asc' ? 'desc' : 'asc',
+    }));
+  }, []);
 
   const cityCounts = useMemo(() => {
     const counts: Record<string, number> = {};
