@@ -52,6 +52,7 @@ export function DashboardPage() {
           usersTotal={kpisUsers.totalUsersP}
           todosTotal={kpisTodos.totalP}
           completionRate={kpisTodos.completionRateP}
+          theme={settings.theme}
         />
       </section>
       <section className={styles.grid}>
