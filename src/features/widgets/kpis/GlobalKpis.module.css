@@ -13,3 +13,9 @@
   padding: var(--space-4);
   min-height: 100px;
 }
+
+.chartWrapper {
+  background: var(--surface-2) !important;
+  border-radius: var(--radius-md) !important;
+  padding: var(--space-4) !important;
+}

@@ -19,3 +19,23 @@ export const DEFAULT_SETTINGS: AppSettings = {
   motion: 'system',
   dataSource: 'jsonplaceholder',
 };
+
+export const revenueData = [
+  { value: 95000 },
+  { value: 102000 },
+  { value: 98000 },
+  { value: 125000 },
+];
+
+export const revenueData2 = [
+  { value: 9500 },
+  { value: 10200 },
+  { value: 9800 },
+  { value: 12500 },
+];
+
+export const donusChartData = [
+  { category: 'Desktop', value: 65 },
+  { category: 'Mobile', value: 30 },
+  { category: 'Tablet', value: 5 },
+];
