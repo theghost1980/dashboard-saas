@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import styles from './CustomerPage.module.css';
 import type {
   InternalCustomer,
@@ -108,13 +108,16 @@ export function CustomersPage() {
     return copyFilteredCustomers;
   }, [filteredCustomers, sort.key, sort.order]);
 
-  const handleSetSort = (key: SortKey) => {
-    const k = key;
-    let prevOrder = sort.order;
-    if (prevOrder === 'asc') prevOrder = 'desc';
-    else prevOrder = 'asc';
-    setSort({ key: k, order: prevOrder });
-  };
+  const handleSetSort = useCallback(
+    (key: SortKey) => {
+      const k = key;
+      let prevOrder = sort.order;
+      if (prevOrder === 'asc') prevOrder = 'desc';
+      else prevOrder = 'asc';
+      setSort({ key: k, order: prevOrder });
+    },
+    [sort],
+  );
 
   const cityCounts = useMemo(() => {
     const counts: Record<string, number> = {};
