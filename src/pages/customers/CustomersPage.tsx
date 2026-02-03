@@ -30,6 +30,9 @@ export function CustomersPage() {
   const debouncedQuery = useDebouncedValue(query, 300);
 
   const customerData = useMemo(() => {
+    if (users.state.status !== 'success' || todos.state.status !== 'success') {
+      return [];
+    }
     let userTodos: UserStats = {};
     const userTodoDefault: Stats = {
       total: 0,
