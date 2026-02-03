@@ -1,6 +1,5 @@
-import { DonutChart } from '@/shared/ui/handcrafted/graphics/DonutChart';
 import styles from './GlobalKpis.module.css';
-import { BarChart, KpiCard } from '@derpdaderp/chartkit';
+import { DonutChart, KpiCard } from '@derpdaderp/chartkit';
 import { setCharKitTheme } from '@/shared/ui/chartkit/chatTheme';
 import type { Theme } from '@/types/app';
 
@@ -25,6 +24,12 @@ const revenueData2 = [
   { value: 12500 },
 ];
 
+const donusChartData = [
+  { category: 'Desktop', value: 65 },
+  { category: 'Mobile', value: 30 },
+  { category: 'Tablet', value: 5 },
+];
+
 export function GlobalKpis({
   usersTotal,
   todosTotal,
@@ -33,48 +38,40 @@ export function GlobalKpis({
 }: Props) {
   return (
     <div className={styles.globalKpis}>
-      <div className={styles.globalKpis}>
-        <KpiCard
-          label="Usuarios"
-          value={usersTotal}
-          delta={12.5}
-          data={revenueData}
-          theme={setCharKitTheme(theme)}
-        />
-        <DonutChart
-          label={'Todos'}
-          value={todosTotal}
-          delta={0.5}
-          deltaLabel={`vs Ayer`}
-        />
-        <DonutChart
-          label={'Completion Rate'}
-          value={completionRate}
-          delta={-0.4}
-          deltaLabel={`vs Mes pasado`}
-        />
-      </div>
-      <div>
-        <BarChart
-          data={revenueData}
-          theme={setCharKitTheme(theme)}
-          orientation="vertical"
-          showLabels
-          barRadius={5}
-          dataKey={'value'}
-          categoryKey={'value'}
-        />
-        <div className={styles.globalKpis}>
-          <KpiCard
-            label="Revenue"
-            value={12500}
-            delta={12.5}
-            data={revenueData2}
-            theme={setCharKitTheme(theme)}
-            format={(v) => `$${(v / 1000).toFixed(0)}K`}
-          />
-        </div>
-      </div>
+      <KpiCard
+        label="Usuarios"
+        value={usersTotal}
+        delta={12.5}
+        data={revenueData}
+        theme={setCharKitTheme(theme)}
+      />
+      <KpiCard
+        label="Todos"
+        value={todosTotal}
+        delta={40}
+        data={revenueData2}
+        theme={setCharKitTheme(theme)}
+        format={(v) => `${v * 100}`}
+      />
+      <KpiCard
+        label="Completion Rate"
+        value={completionRate}
+        delta={-40}
+        data={revenueData2}
+        theme={setCharKitTheme(theme)}
+        format={(v) => `${v * 100}%`}
+      />
+      <DonutChart
+        data={donusChartData}
+        theme={setCharKitTheme(theme)}
+        size={220}
+        innerRadius={0.6}
+        showLegend
+        legendPosition="right"
+        padAngle={2}
+        dataKey={'value'}
+        labelKey={'category'}
+      />
     </div>
   );
 }
