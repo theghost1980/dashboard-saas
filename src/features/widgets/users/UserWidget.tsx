@@ -63,17 +63,14 @@ export function UserWidget({ dataSource, userRefetch, userState }: Props) {
       <section>
         <StatusBar
           status={userState.status}
+          title={'Usuarios'}
+          dataSource={dataSource}
           errorMessage={userState.status === 'error' ? userState.error : ''}
           onRetry={() => void handleRefetch()}
           lastUpdated={lastUpdated}
         />
       </section>
       <header className={styles.header}>
-        <div className={styles.headerTitle}>
-          <h2 className={styles.title}>Usuarios</h2>
-          <span className={styles.badgeSmall}>{dataSource}</span>
-        </div>
-
         <section className={styles.searchBox}>
           <label className={styles.label} htmlFor="query-input">
             Buscar:

@@ -1,9 +1,13 @@
 import { getCustomerValue } from '@/shared/utils/utils';
 import styles from './StatusBar.module.css';
 import { useNow } from '@/shared/hooks/useNow';
+import type { DataSource } from '@/types/app';
 
 interface Props {
   status: 'idle' | 'loading' | 'success' | 'error';
+  title: string;
+  dataSource: DataSource;
+  subTitle?: string;
   errorMessage?: string;
   onRetry?: () => void;
   lastUpdated?: Date;
@@ -14,6 +18,9 @@ export function StatusBar({
   errorMessage,
   onRetry,
   lastUpdated,
+  title,
+  dataSource,
+  subTitle,
 }: Props) {
   const now = useNow(60_000);
 
@@ -39,9 +46,18 @@ export function StatusBar({
         </div>
       )}
       {status === 'success' && lastUpdated && (
-        <div className={styles.success}>
-          actualizado hace:
-          {getMinutesAgo(now, lastUpdated)} minuto(s)
+        <div className={styles.statusContainer}>
+          <div>
+            <div className={styles.statusRight}>
+              <h2 className={styles.title}>{title}</h2>
+              <span className={styles.badgeSmall}>{dataSource}</span>
+            </div>
+            {subTitle && <p className={styles.subtitle}>{subTitle}</p>}
+          </div>
+          <div className={styles.success}>
+            actualizado hace:
+            {getMinutesAgo(now, lastUpdated)} minuto(s)
+          </div>
         </div>
       )}
     </div>

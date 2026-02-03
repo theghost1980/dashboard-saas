@@ -47,20 +47,28 @@ export function TodoWidget({ dataSource, todoRefetch, todoState }: Props) {
       <section>
         <StatusBar
           status={todoState.status}
+          title={'Todos'}
+          dataSource={dataSource}
           errorMessage={todoState.status === 'error' ? todoState.error : ''}
           onRetry={() => void handleRefetch()}
           lastUpdated={lastUpdated}
         />
       </section>
       <header className={styles.header}>
-        <div>
-          <div className={styles.headerTitle}>
-            <h2 className={styles.title}>Todos</h2>
-            <span className={styles.badgeSmall}>{dataSource}</span>
+        <div className={styles.chart}>
+          <div className={styles.chartTitle}>
+            <div className={styles.chartLabel}>Progreso</div>
+            <div className={styles.chartValue}>
+              {kpis.completionRate}% completado
+            </div>
           </div>
-          <p className={styles.subtitle}>Resumen + lista</p>
+          <div className={styles.bar}>
+            <div
+              className={styles.fill}
+              style={{ width: `${kpis.completionRate}%` }}
+            />
+          </div>
         </div>
-
         <div className={styles.actions}>
           <button
             className={styles.smallButton}
@@ -91,20 +99,6 @@ export function TodoWidget({ dataSource, todoRefetch, todoState }: Props) {
           <div className={styles.kpiValue}>{kpis.completionRate}%</div>
         </div>
       </section>
-      <div className={styles.chart}>
-        <div className={styles.chartTitle}>
-          <div className={styles.chartLabel}>Progreso</div>
-          <div className={styles.chartValue}>
-            {kpis.completionRate}% completado
-          </div>
-        </div>
-        <div className={styles.bar}>
-          <div
-            className={styles.fill}
-            style={{ width: `${kpis.completionRate}%` }}
-          />
-        </div>
-      </div>
       <section className={styles.body}>
         <ShimmerOverlay
           isLoading={todoState.status === 'loading'}

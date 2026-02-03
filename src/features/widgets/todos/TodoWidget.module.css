@@ -12,36 +12,7 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  margin-top: var(--space-2);
-}
-
-.headerTitle {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  gap: var(--space-2);
-}
-
-.title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text-1);
-}
-
-.badgeSmall {
-  font-size: var(--font-size-xs);
-  font-weight: 500;
-  color: var(--badge-text);
-  background: var(--badge-bg);
-  border: 1px solid var(--border-color-1);
-  border-radius: var(--radius-md);
-  padding: var(--space-1) var(--space-2);
-}
-
-.subtitle {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-2);
+  padding: var(--space-2);
 }
 
 .smallButton {
