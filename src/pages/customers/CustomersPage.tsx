@@ -82,31 +82,26 @@ export function CustomersPage() {
 
   const sortedCustomers = useMemo(() => {
     if (filteredCustomers.length <= 1) return filteredCustomers;
-    const copyFilteredCustomers = [...filteredCustomers];
-    const k = sort.key;
-    const o = sort.order;
-    if (k === 'name' || k === 'email' || k === 'username') {
-      copyFilteredCustomers.sort((a: InternalCustomer, b: InternalCustomer) => {
-        const va = getCustomerValue.getStringValue(a, k);
-        const vb = getCustomerValue.getStringValue(b, k);
-        if (o === 'asc') {
-          return va.localeCompare(vb);
-        } else {
-          return vb.localeCompare(va);
-        }
-      });
-    } else if (k === 'pending' || k === 'rate') {
-      copyFilteredCustomers.sort((a: InternalCustomer, b: InternalCustomer) => {
-        const va = getCustomerValue.getNumberValue(a, k);
-        const vb = getCustomerValue.getNumberValue(b, k);
-        if (o === 'asc') {
-          return va - vb;
-        } else {
-          return vb - va;
-        }
-      });
-    }
-    return copyFilteredCustomers;
+
+    const { key, order } = sort;
+    const dir = order === 'asc' ? 1 : -1;
+
+    const decorated = filteredCustomers.map((item, index) => ({ item, index }));
+
+    decorated.sort((a, b) => {
+      const va = getCustomerValue.getSortValue(a.item, key);
+      const vb = getCustomerValue.getSortValue(b.item, key);
+
+      let cmp =
+        typeof va === 'number' && typeof vb === 'number'
+          ? va - vb
+          : String(va).localeCompare(String(vb));
+
+      if (cmp === 0) cmp = a.index - b.index;
+      return cmp * dir;
+    });
+
+    return decorated.map((x) => x.item);
   }, [filteredCustomers, sort.key, sort.order]);
 
   const handleSetSort = useCallback((key: SortKey) => {
