@@ -81,6 +81,7 @@ export function CustomersPage() {
   }, [customerData, debouncedQuery]);
 
   const sortedCustomers = useMemo(() => {
+    if (filteredCustomers.length <= 1) return filteredCustomers;
     const copyFilteredCustomers = [...filteredCustomers];
     const k = sort.key;
     const o = sort.order;

@@ -1,4 +1,4 @@
-import type { InternalCustomer } from '@/types/app';
+import type { InternalCustomer, SortKey } from '@/types/app';
 
 const getStringValue = (
   customer: InternalCustomer,
@@ -21,8 +21,23 @@ const getlastUpdateMinutesFromNow = (dateNow: Date, lastDate: Date) => {
   return Math.max(0, minutes);
 };
 
+const getSortValue = (c: InternalCustomer, k: SortKey) => {
+  switch (k) {
+    case 'name':
+    case 'email':
+    case 'username':
+      return getCustomerValue.getStringValue(c, k);
+    case 'pending':
+    case 'rate':
+      return getCustomerValue.getNumberValue(c, k);
+    default:
+      return '';
+  }
+};
+
 export const getCustomerValue = {
   getStringValue,
   getNumberValue,
   getlastUpdateMinutesFromNow,
+  getSortValue,
 };
