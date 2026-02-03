@@ -116,6 +116,17 @@ export function CustomersPage() {
     setSort({ key: k, order: prevOrder });
   };
 
+  const cityCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const c of filteredCustomers) {
+      counts[c.city] = (counts[c.city] ?? 0) + 1;
+    }
+    return users.state.cities.map((c) => ({
+      city: c,
+      value: counts[c] ?? 0,
+    }));
+  }, [filteredCustomers, users.state.cities]);
+
   return (
     <div className={styles.customersPage}>
       <div className={styles.topContainer}>
@@ -152,12 +163,7 @@ export function CustomersPage() {
         <section className={styles.midSectionGraphs}>
           <h3 className={styles.titleSection}>Ciudades Principales</h3>
           <DonutChart
-            data={users.state.cities.map((c) => {
-              return {
-                city: c,
-                value: filteredCustomers.filter((u) => u.city === c).length,
-              };
-            })}
+            data={cityCounts}
             theme={setCharKitTheme(settings.theme)}
             size={220}
             innerRadius={0}
