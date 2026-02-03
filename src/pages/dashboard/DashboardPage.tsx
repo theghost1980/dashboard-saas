@@ -46,7 +46,7 @@ export function DashboardPage() {
   }, [todosQuery.state.status, todosQuery.state.data.length]);
 
   return (
-    <div className={styles.dashboard}>
+    <div id="main-content" className={styles.dashboard}>
       <section className={styles.globalSection}>
         <GlobalKpis
           usersTotal={kpisUsers.totalUsersP}
