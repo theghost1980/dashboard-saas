@@ -145,3 +145,7 @@ Sección Resumen Diario de Actividades:
 
 - [ ] Añadir **Stylelint** para detectar variables CSS huérfanas y consistencia.
 - [ ] Documentar en README: theming + script anti-flicker (decisión técnica).
+
+### UI / Styles
+
+- hacer scaneo de clases huerfanas antes de llevar version final de prod.
