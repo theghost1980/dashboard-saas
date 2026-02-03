@@ -3,6 +3,7 @@ import type { DataSource } from '@/types/app';
 import type { NavItem } from '@/types/navigation';
 import { NavLink, Outlet } from 'react-router';
 import { useSettings } from '@/app/context/hooks/useSettings';
+import { useState } from 'react';
 
 type Props = {
   title: string;
@@ -11,28 +12,36 @@ type Props = {
 
 export function AppShell({ title, navItems }: Props) {
   const { settings, handleSettingChange } = useSettings();
+  const [sideBarHidden, setSideBarHidden] = useState(false);
 
   return (
     <div className={styles.shell}>
-      <a className={styles.skipLink} href="#main-content">
-        Saltar al contenido
-      </a>
-      <aside className={styles.sidebar} aria-label="Barra lateral">
-        <div className={styles.brand}>SaaS Dashboard</div>
+      <div className={sideBarHidden ? styles.hideSideBar : styles.showSideBar}>
+        <a className={styles.skipLink} href="#main-content">
+          Saltar al contenido
+        </a>
+        <aside className={styles.sidebar} aria-label="Barra lateral">
+          <div className={styles.brand}>SaaS Dashboard</div>
 
-        <nav className={styles.nav} aria-label="Navegación principal">
-          <ul className={styles.navList}>
-            {navItems.map((item) => (
-              <li key={item.linkTo} className={styles.navListItem}>
-                <NavLink className={styles.navItem} to={item.linkTo}>
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </aside>
-
+          <nav className={styles.nav} aria-label="Navegación principal">
+            <ul className={styles.navList}>
+              {navItems.map((item) => (
+                <li key={item.linkTo} className={styles.navListItem}>
+                  <NavLink className={styles.navItem} to={item.linkTo}>
+                    {item.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+      </div>
+      <button
+        className={styles.toogleViewBtn}
+        onClick={() => setSideBarHidden(!sideBarHidden)}
+      >
+        {sideBarHidden ? '>' : '<'}
+      </button>
       <div className={styles.content}>
         <header className={styles.header}>
           <h1 className={styles.title}>{title}</h1>

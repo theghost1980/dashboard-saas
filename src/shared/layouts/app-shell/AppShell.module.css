@@ -4,6 +4,29 @@
   min-height: 100vh;
 }
 
+.hideSideBar {
+  visibility: hidden;
+  display: none;
+}
+.showSideBar {
+  visibility: inherit;
+  display: inherit;
+}
+
+.toogleViewBtn {
+  position: absolute;
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+  border: 1px solid var(--border-color-2);
+  color: var(--text-2);
+  padding: var(--space-1);
+  top: 50%;
+}
+.toogleViewBtn:hover {
+  cursor: pointer;
+  background: var(--nav-hover-bg);
+}
+
 .skipLink {
   position: absolute;
   left: -9999px;
