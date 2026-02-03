@@ -59,7 +59,7 @@ export function GlobalKpis({
       <DonutChart
         data={donusChartData}
         theme={setCharKitTheme(theme)}
-        size={220}
+        size={180}
         innerRadius={0.6}
         showLegend
         legendPosition="right"
