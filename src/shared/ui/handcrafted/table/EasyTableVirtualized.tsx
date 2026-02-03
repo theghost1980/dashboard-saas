@@ -68,7 +68,10 @@ export function EasyTableVirtualized({
               onClick={() => handleSortClick(col.sortKey)}
             >
               {col.header}{' '}
-              {sort?.order === 'asc' && col.sortKey === sort?.key ? '↑' : '↓'}
+              {col.sortKey &&
+                (sort?.order === 'asc' && col.sortKey === sort?.key
+                  ? '↑'
+                  : '↓')}
             </div>
           ))}
         </div>
