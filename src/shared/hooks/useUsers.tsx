@@ -11,6 +11,7 @@ export function useUsers(dataSource: DataSource) {
   const [state, setState] = useState<AsyncState<InternalUser[]>>({
     status: 'idle',
     data: [],
+    cities: [],
   });
   const abortRef = useRef<AbortController | null>(null);
   const lastDataRef = useRef<InternalUser[]>([]);
@@ -21,29 +22,37 @@ export function useUsers(dataSource: DataSource) {
 
     setState((prev) => {
       lastDataRef.current = prev.data;
-      return { status: 'loading', data: prev.data };
+      return { status: 'loading', data: prev.data, cities: prev.cities };
     });
 
+    let cities: string[] = [];
     try {
       let list: InternalUser[] = [];
       let rawUsers: UserJSONPlaceholder[] | UserDummyJSON[] = [];
       if (dataSource === 'jsonplaceholder') {
         rawUsers = await JSONPlaceholderApi.getUsers(abortRef.current.signal);
         list = rawUsers.map(AdapterUserUtils.mapJsonPlaceHolderUserToInternal);
+        cities = JSONPlaceholderApi.getCitiesFromRawResponse(rawUsers);
       }
       if (dataSource === 'dummyjson') {
         rawUsers = (await DummyJSONApi.getUsers(abortRef.current.signal)).users;
         list = rawUsers.map(AdapterUserUtils.mapDummyJsonUserToInternal);
+        cities = DummyJSONApi.getCitiesFromRawResponse(rawUsers);
       }
       list = ApiUtils.expandUsers(list);
       lastDataRef.current = list;
-      setState({ status: 'success', data: list });
+      setState({ status: 'success', data: list, cities });
     } catch (error: unknown) {
       if (error instanceof DOMException && error.name === 'AbortError') return;
       const message =
         error instanceof Error ? error.message : 'Error desconocido';
 
-      setState({ status: 'error', error: message, data: lastDataRef.current });
+      setState({
+        status: 'error',
+        error: message,
+        data: lastDataRef.current,
+        cities,
+      });
     }
   }, [dataSource]);
 

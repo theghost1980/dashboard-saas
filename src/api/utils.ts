@@ -17,6 +17,7 @@ const expandUsers = (base: InternalUser[], targetCount = 5000) => {
       username: `${original.username}-${suffix}`,
       name: `${original.name} (${suffix})`,
       email: original.email.replace('@', `+${suffix}@`),
+      city: original.city,
     } as InternalUser);
   }
 

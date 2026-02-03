@@ -7,6 +7,7 @@ const mapDummyJsonUserToInternal = (u: UserDummyJSON): InternalUser => ({
   name: [u.firstName, u.maidenName, u.lastName].filter(Boolean).join(' '),
   username: u.username,
   email: u.email,
+  city: u.address.city,
   image: u.image,
 });
 
@@ -17,6 +18,7 @@ const mapJsonPlaceHolderUserToInternal = (
   name: u.name,
   username: u.username,
   email: u.email,
+  city: u.address.city,
   image: undefined,
 });
 

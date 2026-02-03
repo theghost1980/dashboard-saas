@@ -1,4 +1,5 @@
 import { config } from '@/shared/config/config';
+import type { UserDummyJSON } from '@/types/datasource/dummyjson/rawdata';
 import type {
   TodoJSONPlaceholder,
   UserJSONPlaceholder,
@@ -30,7 +31,18 @@ const getTodos = async (
   return data;
 };
 
+const getCitiesFromRawResponse = (
+  rawResponseData: UserJSONPlaceholder[],
+  count: number = 4,
+) => {
+  if (!rawResponseData)
+    return ['Carora', 'Barquisimeto', 'Caracas', 'Maracaibo'];
+  const tempSlice = rawResponseData.slice(0, count);
+  return tempSlice.map((t) => t.address.city);
+};
+
 export const JSONPlaceholderApi = {
   getUsers,
   getTodos,
+  getCitiesFromRawResponse,
 };

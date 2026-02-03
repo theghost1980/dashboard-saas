@@ -14,6 +14,8 @@ import { EasyTableVirtualized } from '@/shared/ui/handcrafted/table/EasyTableVir
 import { EasyTableSimple } from '@/shared/ui/handcrafted/table/EasyTableSimple';
 import { getCustomerValue } from '@/shared/utils/utils';
 import { useSettings } from '@/app/context/hooks/useSettings';
+import { DonutChart } from '@derpdaderp/chartkit';
+import { setCharKitTheme } from '@/shared/ui/chartkit/chatTheme';
 
 export function CustomersPage() {
   const [query, setQuery] = useState('');
@@ -54,6 +56,7 @@ export function CustomersPage() {
         username: user.username,
         email: user.email,
         source: settings.dataSource,
+        city: user.city,
         activity: {
           todosTotal: stats.total,
           todosPending: stats.pending,
@@ -144,6 +147,28 @@ export function CustomersPage() {
           </div>
         </section>
       </div>
+
+      {!query && (
+        <section className={styles.midSectionGraphs}>
+          <h3 className={styles.titleSection}>Ciudades Principales</h3>
+          <DonutChart
+            data={users.state.cities.map((c) => {
+              return {
+                city: c,
+                value: filteredCustomers.filter((u) => u.city === c).length,
+              };
+            })}
+            theme={setCharKitTheme(settings.theme)}
+            size={220}
+            innerRadius={0}
+            showLegend
+            legendPosition="right"
+            padAngle={4}
+            dataKey={'value'}
+            labelKey={'city'}
+          />
+        </section>
+      )}
 
       {settings.virtualization ? (
         <EasyTableVirtualized

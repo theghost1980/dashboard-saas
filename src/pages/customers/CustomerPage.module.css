@@ -11,6 +11,19 @@
   gap: var(--space-3);
 }
 
+.midSectionGraphs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleSection {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-2);
+  padding: var(--space-2);
+}
+
 .searchBox {
   display: flex;
   align-items: center;

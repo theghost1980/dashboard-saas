@@ -1,16 +1,17 @@
 export type DataSource = 'jsonplaceholder' | 'dummyjson';
 
 export type AsyncState<T> =
-  | { status: 'idle'; data: T }
-  | { status: 'loading'; data: T }
-  | { status: 'success'; data: T }
-  | { status: 'error'; error: string; data: T };
+  | { status: 'idle'; data: T; cities: string[] }
+  | { status: 'loading'; data: T; cities: string[] }
+  | { status: 'success'; data: T; cities: string[] }
+  | { status: 'error'; error: string; data: T; cities: string[] };
 
 export interface InternalUser {
   id: number;
   name: string;
   username: string;
   email: string;
+  city: string;
   image?: string;
 }
 
@@ -27,6 +28,7 @@ export interface InternalCustomer {
   username: string;
   email: string;
   source: DataSource;
+  city: string;
   activity: {
     todosTotal: number;
     todosPending: number;
