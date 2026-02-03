@@ -8,6 +8,11 @@ import { useEffect, useState } from 'react';
 export function useDebouncedValue<T>(value: T, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
+    if (typeof value === 'string' && value.trim().length === 0) {
+      setDebouncedValue(value);
+      return;
+    }
+
     const timer = setTimeout(() => {
       setDebouncedValue(value);
     }, delay);
