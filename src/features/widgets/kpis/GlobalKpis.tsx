@@ -4,10 +4,12 @@ import { setCharKitTheme } from '@/shared/ui/chartkit/chatTheme';
 import type { Theme } from '@/types/app';
 import {
   donusChartData,
+  mobileBP,
   revenueData,
   revenueData2,
 } from '@/shared/config/config';
 import { overrideMinStyles } from '@/shared/config/styles';
+import { useDimensions } from '@/shared/hooks/useDimensions';
 
 type Props = {
   usersTotal: number;
@@ -22,9 +24,10 @@ export function GlobalKpis({
   completionRate,
   theme,
 }: Props) {
+  const { w } = useDimensions();
   return (
     <div className={styles.globalKpis}>
-      <div className="chartWrapper">
+      <div className={styles.cardWrap}>
         <KpiCard
           label="Usuarios"
           value={usersTotal}
@@ -34,7 +37,8 @@ export function GlobalKpis({
           style={overrideMinStyles}
         />
       </div>
-      <div className="chartWrapper">
+
+      <div className={styles.cardWrap}>
         <KpiCard
           label="Todos"
           value={todosTotal}
@@ -45,7 +49,8 @@ export function GlobalKpis({
           style={overrideMinStyles}
         />
       </div>
-      <div className="chartWrapper">
+
+      <div className={styles.cardWrap}>
         <KpiCard
           label="Completion Rate"
           value={completionRate}
@@ -56,18 +61,21 @@ export function GlobalKpis({
           style={overrideMinStyles}
         />
       </div>
-      <DonutChart
-        data={donusChartData}
-        theme={setCharKitTheme(theme)}
-        size={180}
-        innerRadius={0.6}
-        showLegend
-        legendPosition="right"
-        padAngle={2}
-        dataKey={'value'}
-        labelKey={'category'}
-        style={overrideMinStyles}
-      />
+
+      <div className={styles.donutWrap}>
+        <DonutChart
+          data={donusChartData}
+          theme={setCharKitTheme(theme)}
+          size={180}
+          innerRadius={0.6}
+          showLegend={w > mobileBP['700px']}
+          legendPosition={'right'}
+          padAngle={2}
+          dataKey={'value'}
+          labelKey={'category'}
+          style={overrideMinStyles}
+        />
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 export const overrideMinStyles = {
   backgroundColor: 'var(--surface-1)',
   borderRadius: 'var(--radius-md)',
-  padding: 'var(--space-4) ',
+  padding: 'var(--space-2) ',
+  minWidth: '150px',
 };

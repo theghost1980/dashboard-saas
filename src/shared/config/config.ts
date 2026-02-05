@@ -39,3 +39,7 @@ export const donusChartData = [
   { category: 'Mobile', value: 30 },
   { category: 'Tablet', value: 5 },
 ];
+
+export const mobileBP = {
+  '700px': 700,
+};
