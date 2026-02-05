@@ -19,7 +19,6 @@ export function AppShell({ title }: Props) {
 
   useEffect(() => {
     if (!w || w === 0) return;
-    console.log(w); //TODO REM
     setShowMobileMenu(w <= 700);
   }, [w]);
 
