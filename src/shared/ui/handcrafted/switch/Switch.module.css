@@ -4,12 +4,13 @@
   flex-direction: row;
   column-gap: 8px;
   padding-right: 8px;
-  border: 1px solid black;
+  border: 1px solid var(--border-color-1);
+  background: var(--surface-1);
   border-radius: 12px;
   padding: 8px;
 }
 .switchContainer:hover {
-  background: rgba(229, 225, 225, 0.823);
+  background: var(--surface-2);
 }
 
 .labelSpan {
@@ -23,11 +24,11 @@
   flex-direction: row;
   width: 40px;
   height: 20px;
-  border: 1px solid black;
   border-radius: 12px;
-  background: rgb(238, 227, 227);
   padding: 1px;
   box-sizing: border-box;
+  border: 1px solid var(--border-color-2);
+  background: var(--surface-2);
 }
 .slider::before {
   position: absolute;
@@ -37,7 +38,7 @@
   transform: translateY(-50%);
   width: var(--slider-circle-diameter);
   height: var(--slider-circle-diameter);
-  background: rgb(128, 122, 168);
+  background: var(--accent-1);
   border-radius: 50%;
 }
 input:checked + .slider::before {

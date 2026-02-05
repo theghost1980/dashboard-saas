@@ -68,3 +68,15 @@
 .bodyScroll::-webkit-scrollbar-track {
   background-color: var(--scrollbar-track);
 }
+
+@media (max-width: 700px) {
+  .bodyScroll {
+    max-height: 60vh;
+  }
+
+  .headerCell,
+  .dataCell {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+}

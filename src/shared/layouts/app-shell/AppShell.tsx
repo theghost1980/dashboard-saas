@@ -4,6 +4,7 @@ import type { NavItem } from '@/types/navigation';
 import { NavLink, Outlet } from 'react-router';
 import { useSettings } from '@/app/context/hooks/useSettings';
 import { useState } from 'react';
+import { useDimensions } from '@/shared/hooks/useDimensions';
 
 type Props = {
   title: string;
@@ -13,6 +14,10 @@ type Props = {
 export function AppShell({ title, navItems }: Props) {
   const { settings, handleSettingChange } = useSettings();
   const [sideBarHidden, setSideBarHidden] = useState(false);
+
+  const { w } = useDimensions();
+
+  console.log(w);
 
   return (
     <div

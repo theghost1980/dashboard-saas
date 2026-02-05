@@ -13,8 +13,8 @@
 
 .midSectionGraphs {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
 .titleSection {
@@ -96,5 +96,27 @@
 
   .searchBox {
     padding: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .searchBox {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .virtualizationStatus {
+    padding: var(--space-2);
+    font-size: var(--font-size-sm);
+  }
+
+  .midSectionGraphs {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
