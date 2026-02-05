@@ -21,7 +21,7 @@ export const useDimensions = () => {
     return () => {
       window.removeEventListener('resize', handleOnResize);
     };
-  }, [dimensions.w, dimensions.h]);
+  }, []);
 
   return dimensions;
 };

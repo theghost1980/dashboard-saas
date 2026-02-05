@@ -1,54 +1,40 @@
 import styles from './AppShell.module.css';
 import type { DataSource } from '@/types/app';
-import type { NavItem } from '@/types/navigation';
-import { NavLink, Outlet } from 'react-router';
+import { Outlet } from 'react-router';
 import { useSettings } from '@/app/context/hooks/useSettings';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDimensions } from '@/shared/hooks/useDimensions';
+import { MenuDesktop } from '@/shared/ui/handcrafted/appmenu/dekstop/Menu-desktop';
 
 type Props = {
   title: string;
-  navItems: NavItem[];
 };
 
-export function AppShell({ title, navItems }: Props) {
+export function AppShell({ title }: Props) {
   const { settings, handleSettingChange } = useSettings();
   const [sideBarHidden, setSideBarHidden] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const { w } = useDimensions();
 
-  console.log(w);
+  useEffect(() => {
+    if (!w || w === 0) return;
+    console.log(w); //TODO REM
+    setShowMobileMenu(w <= 700);
+  }, [w]);
 
   return (
     <div
       className={`${styles.shell} ${sideBarHidden ? styles.shellCollapsed : ''}`}
     >
-      <div className={sideBarHidden ? styles.hideSideBar : styles.showSideBar}>
-        <a className={styles.skipLink} href="#main-content">
-          Saltar al contenido
-        </a>
-        <aside className={styles.sidebar} aria-label="Barra lateral">
-          <div className={styles.brand}>SaaS Dashboard</div>
-
-          <nav className={styles.nav} aria-label="Navegación principal">
-            <ul className={styles.navList}>
-              {navItems.map((item) => (
-                <li key={item.linkTo} className={styles.navListItem}>
-                  <NavLink className={styles.navItem} to={item.linkTo}>
-                    {item.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </aside>
-      </div>
-      <button
-        className={styles.toogleViewBtn}
-        onClick={() => setSideBarHidden(!sideBarHidden)}
-      >
-        {sideBarHidden ? '>' : '<'}
-      </button>
+      {showMobileMenu ? (
+        <p>Mobile //TODO</p>
+      ) : (
+        <MenuDesktop
+          sideBarHidden={sideBarHidden}
+          setSideBarHidden={() => setSideBarHidden(!sideBarHidden)}
+        />
+      )}
       <div className={styles.content}>
         <header className={styles.header}>
           <h1 className={styles.title}>{title}</h1>
