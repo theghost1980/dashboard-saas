@@ -47,7 +47,7 @@ export function DashboardPage() {
 
   return (
     <div id="main-content" className={styles.dashboard}>
-      <section className={styles.globalSection}>
+      {/* <section className={styles.globalSection}>
         <GlobalKpis
           usersTotal={kpisUsers.totalUsersP}
           todosTotal={kpisTodos.totalP}
@@ -66,7 +66,7 @@ export function DashboardPage() {
           todoRefetch={todosQuery.refetch}
           todoState={todosQuery.state}
         />
-      </section>
+      </section> */}
     </div>
   );
 }
