@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { MenuDesktop } from '@/shared/ui/handcrafted/appmenu/dekstop/Menu-desktop';
 import { MenuMobile } from '@/shared/ui/handcrafted/appmenu/mobile/Menu-mobile';
 import { useDrawer } from '@/shared/hooks/useDrawer';
+import { useDevice } from '@/shared/hooks/useDevice';
 
 type Props = {
   title: string;
@@ -14,7 +15,9 @@ type Props = {
 export function AppShell({ title }: Props) {
   const { settings, handleSettingChange } = useSettings();
   const [sideBarHidden, setSideBarHidden] = useState(false);
-  const { isMobile, isOpen, open, close } = useDrawer();
+  const { isOpen, open, close } = useDrawer();
+
+  const { isMobile } = useDevice();
 
   return (
     <div
