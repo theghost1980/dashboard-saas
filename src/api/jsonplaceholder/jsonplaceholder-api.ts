@@ -1,5 +1,4 @@
 import { config } from '@/shared/config/config';
-import type { UserDummyJSON } from '@/types/datasource/dummyjson/rawdata';
 import type {
   TodoJSONPlaceholder,
   UserJSONPlaceholder,

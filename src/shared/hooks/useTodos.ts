@@ -10,6 +10,7 @@ export function useTodos(dataSource: DataSource) {
   const [state, setState] = useState<AsyncState<InternalTodo[]>>({
     status: 'idle',
     data: [],
+    cities: [],
   });
   const abortRef = useRef<AbortController | null>(null);
   const lastDataRef = useRef<InternalTodo[]>([]);
@@ -21,7 +22,7 @@ export function useTodos(dataSource: DataSource) {
 
     setState((prev) => {
       lastDataRef.current = prev.data;
-      return { status: 'loading', data: prev.data };
+      return { status: 'loading', data: prev.data, cities: prev.cities };
     });
 
     try {
@@ -35,13 +36,18 @@ export function useTodos(dataSource: DataSource) {
         todos = rawTodos.map(AdapterTodoUtils.mapDummyJsonTodoToInternal);
       }
       lastDataRef.current = todos;
-      setState({ status: 'success', data: todos });
+      setState({ status: 'success', data: todos, cities: [] });
     } catch (error: unknown) {
       if (error instanceof DOMException && error.name === 'AbortError') return;
       const message =
         error instanceof Error ? error.message : 'Error desconocido';
 
-      setState({ status: 'error', error: message, data: lastDataRef.current });
+      setState({
+        status: 'error',
+        error: message,
+        data: lastDataRef.current,
+        cities: [],
+      });
     }
   }, [dataSource]);
 
