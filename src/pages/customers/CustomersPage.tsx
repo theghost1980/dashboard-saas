@@ -151,7 +151,7 @@ export function CustomersPage() {
         </section>
         <section>
           <div className={styles.virtualizationStatus}>
-            {sortedCustomers.length} clientes • tabla Virtualizada{' '}
+            mostrando {sortedCustomers.length} clientes • tabla Virtualizada{' '}
             <div className={styles.statusIndicator}>
               <span
                 className={settings.virtualization ? styles.on : styles.off}

@@ -1,9 +1,10 @@
 import type { InternalCustomer, Sort, SortKey } from '@/types/app';
 import styles from './EasyTable.module.css';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { columns } from './EasyTableColumns';
 import { useVirtualRows } from './hooks/useVirtualRows';
 import { renderRow } from './utils/EasyTableFuntions';
+import { useDimensions } from '@/shared/hooks/useDimensions';
 
 interface Props {
   customers: InternalCustomer[];
@@ -20,10 +21,18 @@ export function EasyTableVirtualized({
   onSort,
   sort,
 }: Props) {
-  const gridTemplateColumns = columns.map((c) => c.width).join(' ');
   const scrollRef = React.useRef<HTMLDivElement | null>(null);
 
   const effectiveResetKey = resetKey ?? customers.length;
+
+  const { w } = useDimensions();
+
+  const visibleColumns = useMemo(() => {
+    const maxPriorityVisible = w < 700 ? 1 : w < 800 ? 2 : 3;
+    return columns.filter((c) => c.priority < maxPriorityVisible);
+  }, [w]);
+
+  const gridTemplateColumns = visibleColumns.map((c) => c.width).join(' ');
 
   const virtual = useVirtualRows({
     itemsCount: customers.length,
@@ -56,7 +65,7 @@ export function EasyTableVirtualized({
           style={{ gridTemplateColumns }}
           role="row"
         >
-          {columns.map((col) => (
+          {visibleColumns.map((col) => (
             <div
               key={col.key}
               className={styles.headerCell}
@@ -89,7 +98,7 @@ export function EasyTableVirtualized({
                 .map((c) =>
                   renderRow(
                     c,
-                    columns,
+                    visibleColumns,
                     gridTemplateColumns,
                     styles,
                     virtual.rowHeight,
