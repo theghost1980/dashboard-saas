@@ -69,7 +69,7 @@
   background-color: var(--scrollbar-track);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 801px) {
   .bodyScroll {
     max-height: 60vh;
   }

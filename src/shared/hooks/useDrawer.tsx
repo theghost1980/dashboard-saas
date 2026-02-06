@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDimensions } from './useDimensions';
 import { useLocation } from 'react-router';
+import { mobileBP } from '../config/config';
 
-export const useDrawer = (widthBreakpoint = 700) => {
+export const useDrawer = (widthBreakpoint = mobileBP['800px']) => {
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 

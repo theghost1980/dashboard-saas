@@ -68,7 +68,7 @@ export function GlobalKpis({
           theme={setCharKitTheme(theme)}
           size={180}
           innerRadius={0.6}
-          showLegend={w > mobileBP['700px']}
+          showLegend={w > mobileBP['800px']}
           legendPosition={'right'}
           padAngle={2}
           dataKey={'value'}

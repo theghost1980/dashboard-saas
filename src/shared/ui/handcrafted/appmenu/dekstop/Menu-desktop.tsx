@@ -17,7 +17,7 @@ export function MenuDesktop({ sideBarHidden, setSideBarHidden }: Props) {
           Saltar al contenido
         </a>
         <aside className={styles.sidebar} aria-label="Barra lateral">
-          <div className={styles.brand}>SaaS Dashboard {window.innerWidth}</div>
+          <div className={styles.brand}>SaaS Dashboard</div>
 
           <nav className={styles.nav} aria-label="Navegación principal">
             <ul className={styles.navList}>

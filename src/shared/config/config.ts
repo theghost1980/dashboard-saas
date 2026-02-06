@@ -41,5 +41,5 @@ export const donusChartData = [
 ];
 
 export const mobileBP = {
-  '700px': 700,
+  '800px': 800,
 };
