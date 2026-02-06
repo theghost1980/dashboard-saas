@@ -1,82 +1,101 @@
 # TODO — Dashboard SaaS
 
-Este archivo contiene mejoras pendientes **intencionales** para futuras iteraciones.
-En este proyecto se prioriza profundidad: se implementan features y luego se deja
-una fase clara de optimización / hardening.
+Este documento define el estado real del proyecto y las tareas pendientes.
+Es la **fuente de verdad** para el roadmap técnico y de UX.
 
 ---
 
-## UI / Visual polish
+## ✅ DONE
 
-- [ ] Unificar espaciado global entre widgets (grid/layout, gaps consistentes).
-- [ ] Revisar tabla de Customers:
-  - [ ] hover/selected consistente (tokens)
-  - [ ] zebra rows opcional
-  - [ ] header sticky (si aplica)
-- [ ] Mejorar consistencia de botones/inputs en toda la app:
-  - [ ] considerar `shared/ui/Button`
-  - [ ] considerar `shared/ui/Input`
-- [ ] Ajustar `--surface-2/3` para que hover/selected se note (light/dark).
-- [ ] Definir tokens para estados: `success / warn / error` y aplicarlos a StatusBar.
-- [ ] Scrollbars: aplicar tokens también a `::-webkit-scrollbar` (Chrome/Safari).
+### AppShell / Layout
 
----
+- [x] AppShell con layout base desktop
+- [x] Sidebar desktop colapsable
+- [x] Mobile drawer navigation (hamburger)
+  - [x] Overlay
+  - [x] Cierre al navegar (pathname)
+  - [x] Cierre con tecla ESC
+  - [x] Lock scroll del body cuando está abierto
+  - [x] Cierre automático al cambiar a desktop
+- [x] Mover selector de “Origen de Datos” al drawer en mobile
+- [x] Ocultar selector en header mobile
 
-## Customers Page — UX “producto real”
+### Hooks / Infraestructura
 
-- [ ] Añadir estados completos:
-  - [ ] Loading state (shimmer/placeholder consistente)
-  - [ ] Error state (mensaje + botón “Reintentar”)
-  - [ ] Empty state (0 resultados + acción “limpiar búsqueda”)
-- [ ] Unificar estilo de charts usando `chartPanel`:
-  - [ ] envolver el donut y futuros charts en un panel con `surface-1`, padding, radius, shadow
-  - [ ] evitar depender del fondo interno del theme de ChartKit
-- [ ] Añadir un segundo gráfico (opcional):
-  - [ ] Top ciudades (donut) + distribución por actividad (bar/donut)
-- [ ] Confirmar consistencia de charts en light/dark con el mismo wrapper.
+- [x] `useDimensions` mejorado
+  - init correcto (sin `w=0`)
+  - throttling con `requestAnimationFrame`
+  - evitar renders redundantes
+- [x] `useDrawer`
+  - API clara: `isMobile`, `isOpen`, `open`, `close`, `toggle`
+  - sin exponer setters internos
+- [x] Separación clara entre:
+  - hooks de comportamiento
+  - layout
+  - widgets
 
----
+### Dashboard — Global KPIs
 
-## Performance / Code quality
-
-- [ ] Customers sort:
-  - [ ] usar `useCallback` para `handleSetSort` con `setSort(prev => ...)`
-  - [ ] simplificar sort con un único comparador (string/number)
-  - [ ] (opcional) stable sort para orden determinístico en empates
-- [ ] Customers memos:
-  - [ ] asegurar dependencias correctas en `useMemo` (status/dataSource/data)
-  - [ ] evitar trabajo cuando no hay data lista (`status !== 'success'` → return [])
-- [ ] VirtualizedList:
-  - [ ] confirmar `itemHeight` vs padding real del item
-  - [ ] (opcional) scroll handler estable si se necesita
-- [ ] Normalizar nombres de callbacks:
-  - [ ] `getKey={(u) => u.id}` (evitar nombres tipo “filteredUsers” como parámetro)
-- [ ] Extraer util “time ago” a helper reutilizable (si aplica en más de un sitio).
+- [x] Refactor mobile-first (Opción A):
+  - [x] Stack vertical en mobile
+  - [x] Grid 3 columnas en desktop
+  - [x] Donut abajo full width
+  - [x] Sin legend a la derecha (evita romper mobile)
+- [x] Layout consistente con surfaces y spacing
 
 ---
 
-## Accesibilidad
+## 🟡 IN PROGRESS
 
-- [ ] Revisar focus states (inputs/botones) en todas las vistas.
-- [ ] Añadir placeholders consistentes + labels correctos donde falten.
-- [ ] Revisar contraste (WCAG) para text-2/text-3 en dark mode.
-- [ ] Confirmar que shimmer respete `prefers-reduced-motion` (ya aplicado) y extenderlo si hace falta.
+### Customers Page
+
+- [x] Gráfico oculto en mobile (<700px)
+- [x] Sistema de columnas por prioridad (`priority`)
+- [x] Cálculo de `visibleColumns` por breakpoint
+- [x] `gridTemplateColumns` derivado de columnas visibles
+- [ ] Renderizar headers con `visibleColumns` (no `columns`)
+- [ ] Renderizar filas con `visibleColumns`
+- [ ] Ajustar prioridades finales:
+  - `<800px`: ocultar 1 columna
+  - `<700px`: ocultar una adicional
+- [ ] Si el sort apunta a una columna oculta → fallback a `name`
+- [ ] Revisar `rowHeight` en mobile (tap targets)
+
+### Widgets (User / Todo)
+
+- [ ] Definir política mobile-first:
+  - virtualización solo en desktop
+  - lista normal en mobile (evitar scroll dentro de scroll)
+- [ ] Ajustar densidad (`rowHeight`) en mobile
+- [ ] KPIs del TodoWidget en 2x2 en mobile
+- [ ] Reducir “chrome” en mobile (menos elementos antes de la lista)
 
 ---
 
-## AppShell / Select (decisión técnica importante)
+## 🔜 TODO
 
-- [ ] Reemplazar `<select>` nativo por un custom Select accesible.
-  - Razón: el dropdown nativo no respeta completamente dark theme y causa flicker
-  - Goal: control total de estilos y estados hover/active sin flashes
-  - Nota: implementar accesible (button + listbox / ARIA) o enfoque headless
+### UX / Producto
+
+- [ ] Customers table:
+  - expand row en mobile (ver detalles inline)
+- [ ] Empty states más expresivos
+- [ ] Estados de error visibles
+
+### Accesibilidad
+
+- [ ] Restaurar focus al hamburger al cerrar drawer
+- [ ] Revisar navegación por teclado en tablas
+
+### Arquitectura / DX
+
+- [ ] Centralizar breakpoints (700 / 800) en config/tokens
+- [ ] Crear `useBreakpoint()` semántico
+- [ ] Tests básicos de hooks (useDrawer / useDimensions)
 
 ---
 
-## DX / Mantenimiento
+## 🧹 NICE TO HAVE
 
-- [ ] Añadir Stylelint para detectar variables CSS huérfanas y consistencia.
-
----
-
-⬅️ Volver al [README](../../README.md)
+- [ ] Animación de entrada/salida del drawer
+- [ ] Persistir estado del sidebar desktop
+- [ ] Mejorar contraste en dark mode para tablas

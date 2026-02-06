@@ -21,19 +21,21 @@ No es una demo visual: es una **aplicación pensada como producto**.
 - **React Router**
 - **Virtualized Lists (handcrafted)**
 
-Sin librerías de UI pesadas.
+Sin librerías de UI pesadas.  
 La intención es **entender y controlar** cada capa.
 
 ---
 
 ## ✨ Features principales
 
-- AppShell con sidebar colapsable
+- AppShell con sidebar colapsable (desktop)
+- Navegación mobile con drawer (hamburger + overlay)
 - Dashboard con KPIs reales + gráficos
 - Customers page con:
   - búsqueda
-  - sorting
+  - sorting estable
   - virtualización
+  - columnas responsivas por prioridad
   - gráficos derivados del estado
 
 - Settings page como panel real (no formulario plano)
@@ -55,10 +57,13 @@ La intención es **entender y controlar** cada capa.
 
 ## 📊 Charts
 
-- Gráficos encapsulados en `chartPanel`
+- Gráficos encapsulados en paneles consistentes
 - El fondo del chart **no depende del theme interno** de la librería
 - Consistencia visual garantizada en light/dark
 - Datos derivados con `useMemo` (no en render)
+- Layout mobile-first:
+  - KPIs apilados en mobile
+  - grid como enhancement en desktop
 
 ---
 
@@ -74,14 +79,20 @@ La intención es **entender y controlar** cada capa.
 
 ## 🔍 Estado del proyecto
 
-Este proyecto se considera **funcional y presentable**, con una lista clara de mejoras **dejadas intencionalmente** para futuras Iteraciones pendientes (ver [TODO.md](src/dev/TODO.md))
+Este proyecto se considera **funcional y presentable**, con una lista clara de mejoras
+**dejadas intencionalmente** para futuras iteraciones.
+
+➡️ Ver roadmap técnico en:  
+[`TODO.app.md`](src/dev/docs/TODO.app.md)
 
 ---
 
-## 🔍 Contribuciones posibles pero con reglas
+## 🔍 Contribuciones posibles (con reglas)
 
-Este proyecto también admite mejoras que como usuarios y programadores puedan hacerse, pero para cumplir con estándares de proyectos reales, tenemos una:
-Guía de contribución (ver [CONTRIBUTING.md](src/dev/Contributing-guide.md))
+Este proyecto admite mejoras y contribuciones, siguiendo estándares similares a proyectos reales.
+
+Guía de contribución:  
+[`CONTRIBUTING.app.md`](src/dev/docs/CONTRIBUTING.app.md)
 
 ---
 
@@ -90,13 +101,13 @@ Guía de contribución (ver [CONTRIBUTING.md](src/dev/Contributing-guide.md))
 
 ### 📁 Estructura y separación de responsabilidades
 
-- **Pages**
+- **Pages**  
   Orquestan datos + layout, sin lógica de bajo nivel.
 
-- **Features / Widgets**
+- **Features / Widgets**  
   Componentes con responsabilidad clara (KPIs, Users, Todos).
 
-- **Shared / UI (handcrafted)**
+- **Shared / UI (handcrafted)**  
   Componentes reutilizables creados a mano:
   - VirtualizedList
   - ShimmerOverlay
@@ -131,8 +142,14 @@ Esto evita “saltos” visuales y mejora la percepción de calidad del producto
 
 ### 🎛️ AppShell & decisiones técnicas
 
-- Sidebar colapsable usando CSS Grid
-- No hacks visuales para el `<select>` nativo en dark mode
+- Layout con CSS Grid
+- Sidebar colapsable en desktop
+- Drawer mobile:
+  - overlay
+  - cierre con ESC
+  - cierre al navegar
+  - lock de scroll en body
+- Select nativo mantenido a propósito:
   → decisión consciente de **reemplazarlo en el futuro** por un custom select accesible
 - Accesibilidad considerada:
   - skip links
@@ -162,12 +179,13 @@ Esto evita “saltos” visuales y mejora la percepción de calidad del producto
 ### 🚧 Mejoras pendientes (intencionales)
 
 - Estados completos en Customers (error / empty)
+- Ajustes finales en widgets mobile-first
 - Custom Select accesible
 - Tokens de estados (`success / warn / error`)
 - Stylelint
 - Pulido final de scrollbars y focus states
 
-Estas mejoras están documentadas en `TODO.md`.
+Estas mejoras están documentadas en `TODO.app.md`.
 
 </details>
 
@@ -181,4 +199,5 @@ Este proyecto está pensado como:
 - base para entrevistas técnicas
 - ejemplo de cómo crecer una app sin perder control
 
-Si eres recruiter o engineer, el código está escrito para ser **leído y entendido**, no solo para “funcionar”.
+Si eres recruiter o engineer, el código está escrito para ser
+**leído y entendido**, no solo para “funcionar”.
